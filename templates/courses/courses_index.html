@@ -1,0 +1,27 @@
+{% extends "base/normal_base.html" %}
+
+{% load static %}
+
+{% block title %}Courses{% endblock %}
+
+{% block body %}
+
+{% for course in courses  %}
+    {% if course.is_active %}
+    <a href="{% url "labs_index" course.id 1 %}">
+        <p>{{ course.name }}</p>
+    </a>
+    {% else %}
+        <p>{{ course.name }} -- 还未添加实验哦，请稍等</p>
+    {% endif %}
+    <p>{{ course.label }}</p>
+    <p>{{ course.description }}</p>
+    <p>{{ course.created_time }}</p>
+    <p>{{ course.views }}</p>
+    <p>{{ course.likes }}</p>
+    <p>{{ course.owner.username }}</p>
+    <img src="{% get_media_prefix %}{{ course.image }}" style="width:160px;height:80px;" />
+    <hr />
+{% endfor %}
+
+{% endblock %}

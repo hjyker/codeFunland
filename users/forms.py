@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+
+from django import forms
+from django.forms.util import ErrorList
+from django.contrib.auth.models import User
+
+from users.models import UserProfile
+
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(required=True)
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        required=True
+    )
+    remember_me = forms.BooleanField(
+        required=False
+    )
+
+
+class UserRegisterForm(forms.ModelForm):
+    password = forms.CharField(
+        widget=forms.PasswordInput(),
+        required=True,
+        label=u"密码"
+    )
+    repeat_pwd = forms.CharField(
+        widget=forms.PasswordInput(),
+        required=True,
+        label=u"再次输入密码"
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+    def clean_email(self):
+        email = self.cleaned_data.get("email", "")
+        email_exist = User.objects.filter(email=email).exists()
+
+        if email_exist:
+            tips_msg = u"email已存在"
+            self._errors["email"] = ErrorList([tips_msg])
+        return self.cleaned_data
+
+    def clean_password(self):
+        password = self.cleaned_data.get("password", "").strip()
+        repeat_pwd = self.cleaned_data.get("repeat_pwd", "").strip()
+
+        if password and repeat_pwd and password != repeat_pwd:
+            tips_msg = u"两次密码不一致"
+            self._errors['password'] = ErrorList([tips_msg])
+            del self.cleaned_data["repeat_pwd"]
+
+        return self.cleaned_data
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['avatar_link']
+
+class UploadFileForm(forms.Form):
+    avatar = forms.ImageField()

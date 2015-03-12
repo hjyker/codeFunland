@@ -1,0 +1,28 @@
+{% extends "base/normal_base.html" %}
+
+{% block title %}codeFunland{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+    <a href="{% url "user_profile" user.id %}">Profile</a> |
+    <a href="{% url "courses_index" %}">Courses</a> |
+    <a href="{% url "user_logout" %}">Logout</a> |
+
+    <div style="border:2px solid red">
+        {% if user_recored %}
+            <a href="{% url "labs_index" user_recored.course.id user_recored.lab.weight %}">
+                <p>course: {{ user_recored.course.name }}</p>
+            </a>
+            <p>lab: {{ user_recored.lab.name }}</p>
+            <p>latest learn: {{ user_recored.created_time | date:"Y-m-d" }}</p>
+            <p></p>
+        {% else %}
+            <p>no data</p>
+        {% endif %}
+    </div>
+{% else %}
+    <a href="{% url "user_login" %}">Login</a> |
+    <a href="{% url "user_register" %}">Register</a>
+{% endif %}
+{{ nowtime }}
+{% endblock %}

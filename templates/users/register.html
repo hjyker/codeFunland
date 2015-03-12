@@ -1,0 +1,19 @@
+{% extends "base/normal_base.html" %}
+
+{% block title %}Register{% endblock %}
+
+
+{% block body %}
+<form action="{% url 'user_register' %}" method='POST'>
+    {% csrf_token %}
+
+    {% if register_form %}
+        {% for form in register_form %}
+            <p>{{ form.label }}</p>
+            <p>{{ form }}</p>
+            {{ form.errors }}
+        {% endfor %}
+    {% endif %}
+    <input type="submit" value="submit" />
+</form>
+{% endblock %}
