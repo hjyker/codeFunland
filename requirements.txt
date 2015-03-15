@@ -3,10 +3,8 @@ MySQL-python==1.2.5
 Pillow==2.7.0
 argparse==1.2.1
 backports.ssl-match-hostname==3.4.0.2
-docker-py==1.0.0
+docker-py==0.7.1
 ipython==2.3.1
-mongoengine==0.8.7
-pymongo==2.8
 requests==2.4.3
 six==1.9.0
 websocket-client==0.23.0
