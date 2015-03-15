@@ -3,7 +3,7 @@
 
 
 from django import forms
-from django.forms.util import ErrorList
+from django.forms.util import ErrorList, ValidationError
 from django.contrib.auth.models import User
 
 from users.models import UserProfile
@@ -26,7 +26,7 @@ class UserRegisterForm(forms.ModelForm):
         required=True,
         label=u"密码"
     )
-    repeat_pwd = forms.CharField(
+    password2 = forms.CharField(
         widget=forms.PasswordInput(),
         required=True,
         label=u"再次输入密码"
@@ -42,19 +42,19 @@ class UserRegisterForm(forms.ModelForm):
 
         if email_exist:
             tips_msg = u"email已存在"
-            self._errors["email"] = ErrorList([tips_msg])
-        return self.cleaned_data
+            # self._errors["email"] = ErrorList([tips_msg])
+            raise ValidationError(tips_msg)
+        return email
 
-    def clean_password(self):
+    def clean_password2(self):
         password = self.cleaned_data.get("password", "").strip()
-        repeat_pwd = self.cleaned_data.get("repeat_pwd", "").strip()
+        password2 = self.cleaned_data.get("password2", "").strip()
 
-        if password and repeat_pwd and password != repeat_pwd:
+        if password and password2 and password != password2:
             tips_msg = u"两次密码不一致"
-            self._errors['password'] = ErrorList([tips_msg])
-            del self.cleaned_data["repeat_pwd"]
-
-        return self.cleaned_data
+            # self._errors['password'] = ErrorList([tips_msg])
+            raise ValidationError(tips_msg)
+        return password2
 
 
 class UserProfileForm(forms.ModelForm):
