@@ -35,7 +35,7 @@ def lab_index(request, course_id, lab_weight):
     labs = course.labs_set
 
     # Reback courses.index without labs for this course
-    if not labs.count():
+    if not labs.exists():
         messages.add_message(request,
             messages.WARNING,
             "Sorry, There is not any lab about this course."
@@ -60,17 +60,17 @@ def lab_index(request, course_id, lab_weight):
         ).first()
 
     # Get docker container for current user.
-    user_docker = current_user.userdockers_set
+    user_docker = current_user.userdockers_set.order_by("-created_time").first()
 
     # Get docker container's record that currnet user used.
     create_container = False
-    if not user_docker.exists():
+    if not user_docker:
         create_container = True
-    elif timezone.now() - user_docker.latest().created_time >= EXPIRES:
+    elif timezone.now() - user_docker.created_time >= EXPIRES:
         create_container = True
     else:
         try:
-            docker_port(user_docker.latest().docker_id)
+            docker_port(user_docker.docker_id)
         except Exception, ex:
 # Test ################################################################
             # messages.add_message(request, messages.ERROR, ex)
@@ -97,7 +97,8 @@ def lab_index(request, course_id, lab_weight):
             messages.add_message(request, messages.ERROR, ex)
             user_docker = ex
 
-#    docker_info = docker_ps()
+    # docker_info = docker_ps()
+    docker_info = False
 
     return render(
         request,
@@ -106,8 +107,8 @@ def lab_index(request, course_id, lab_weight):
             "course": course,
             "lab": lab,
             "command_pre": COMMAND_PRE.get(course.label),
-#            "docker_info": docker_info,
-#            "user_docker": user_docker.latest(),
+            "docker_info": docker_info,
+            "user_docker": user_docker,
             "user_code": user_code,
             "code_form": code_form
         }

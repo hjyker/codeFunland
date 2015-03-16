@@ -42,7 +42,7 @@ class UserRegisterForm(forms.ModelForm):
 
         if email_exist:
             tips_msg = u"email已存在"
-#            self._errors["email"] = ErrorList([tips_msg])
+            # self._errors["email"] = ErrorList([tips_msg])
             raise ValidationError(tips_msg)
         return email
 
@@ -52,10 +52,8 @@ class UserRegisterForm(forms.ModelForm):
 
         if password and password2 and password != password2:
             tips_msg = u"两次密码不一致"
-#            self._errors['password'] = ErrorList([tips_msg])
-#            del self.cleaned_data["password2"]
+            # self._errors['password'] = ErrorList([tips_msg])
             raise ValidationError(tips_msg)
- 
         return password2
 
 
