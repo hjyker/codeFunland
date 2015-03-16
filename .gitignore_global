@@ -1,0 +1,4 @@
+*.pyc
+media/*
+migration/*
+!migration/__init__.py
