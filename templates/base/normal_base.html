@@ -3,13 +3,49 @@
 <html lang="zh">
 <head>
     <title>{% block title %}codeFunland{% endblock %}</title>
-    <script src="{% static "js/jquery-1.11.2.min.js" %}"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/amazeui.min.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/amazeui.min.css' %}"></link>
     {% block static_src %}{% endblock %}
     {% block style %}{% endblock %}
 </head>
 
 <body>
-{% block body %}{% endblock %}
+
+<header class="am-topbar am-topbar-fixed-top am-topbar-inverse">
+    <h1 class="am-topbar-brand">
+        <a href="{% url 'courses_index' %}">Codeutopia</a>
+    </h1>
+
+    <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}">
+        <span class="am-icon-bars"></span>
+    </button>
+
+        <div class="am-topbar-right">
+            <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
+                    其他 <span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a href="{% url 'user_register' %}">注册</a></li>
+                    <li><a href="#">随便看看</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="am-topbar-right">
+            <a href="{% url 'user_login' %}">
+                <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm">
+                    登录
+                </button>
+            </a>
+        </div>
+    </div>
+</header>
+{% block body %}
+{% endblock %}
 
 {% block messages %}
     {% if messages %}
