@@ -164,7 +164,7 @@ def update_avatar(request, user_id):
 def handle_upload_files(file):
     file.name = file.name.encode('utf-8')
     file.name = "%s.jpg" % hashlib.md5(file.name).hexdigest()
-    file_path = "/home/tt/codeFunland/media/avatar/" + file.name
+    file_path = "/home/zhangyd/codeFunland/media/avatar/" + file.name
     with open(file_path, "wb+") as info:
         for chunk in file.chunks():
             info.write(chunk)

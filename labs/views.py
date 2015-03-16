@@ -81,6 +81,7 @@ def lab_index(request, course_id, lab_weight):
             )
             create_container = True
 
+    create_container = False
     if create_container:
         try:
             new_docker_container = docker_init_container_ports(int(course.id))
@@ -96,7 +97,7 @@ def lab_index(request, course_id, lab_weight):
             messages.add_message(request, messages.ERROR, ex)
             user_docker = ex
 
-    docker_info = docker_ps()
+#    docker_info = docker_ps()
 
     return render(
         request,
@@ -105,8 +106,8 @@ def lab_index(request, course_id, lab_weight):
             "course": course,
             "lab": lab,
             "command_pre": COMMAND_PRE.get(course.label),
-            "docker_info": docker_info,
-            "user_docker": user_docker.latest(),
+#            "docker_info": docker_info,
+#            "user_docker": user_docker.latest(),
             "user_code": user_code,
             "code_form": code_form
         }
