@@ -9,6 +9,7 @@ function init(){
 	$('.doc-text').css('height', editorHeight - 60);
 	$('.editor-content').css('height', editorHeight);
 	$('#editor').css('height', editorHeight - 50);
+    $('.console').css('height', editorHeight - 50);
 }
 
 function onFun(){
@@ -18,6 +19,7 @@ function onFun(){
 		$('.doc-text').css('height', editorHeight - 60);
 		$('.editor-content').css('height', editorHeight);
 		$('#editor').css('height', editorHeight - 50);
+        $('.console').css('height', editorHeight - 50);
 		console.log($(window).height());
 	})
 }

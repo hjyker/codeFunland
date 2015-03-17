@@ -102,7 +102,7 @@ def lab_index(request, course_id, lab_weight):
 
     return render(
         request,
-        "labs/lab_index.html",
+        "labs/edit_code.html",
         {
             "course": course,
             "lab": lab,
