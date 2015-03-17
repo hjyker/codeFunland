@@ -1,14 +1,13 @@
 {% extends "base/normal_base.html" %}
 
+{% load custom_tags %}
+{% load custom_filters %}
+
 {% block title %}登录{% endblock %}
 
 {% block body %}
-    <form id="login_form" action="{% url 'user_login' %}" method="POST">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="submit" />
-    </form>
-
+    {% form_extra form "user_login" %}
+    
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
