@@ -9,23 +9,22 @@
 {% endblock %}
 
 {% block body %}
-
-
 <div class="contents">
     <div class="am-center">
         <div class="user-img">
             <img src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}"/>
         </div>
         <div>
-            <a href="{% url 'update_avatar' user.id %}">Update Your Avatar?</a>
+            <a href="{% url 'users:update_avatar' user.id %}">Update Your Avatar?</a>
         </div>
         <div class="user-name">
             {{ user.username }}
         </div>
         <div class="user-email">
-            {{ user.email }}        
+            {{ user.email }}
         </div>
     </div>
 </div>
 
+<a href="{% url 'users:update_avatar' user.id %}">Update Your Avatar?</a>
 {% endblock %}

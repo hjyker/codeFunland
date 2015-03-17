@@ -19,9 +19,9 @@
 
 <div class="contents">
 {% if user.is_authenticated %}
-    {% if user_recored %}
+    {% if user_record %}
         <div class="am-center course-name">
-            {{ user_recored.course.name }}
+            {{ user_record.course.name }}
         </div>
         <div class="am-center lab-direction">
             Learn the fundamentals of JavaScript, the programming language of the Web.
@@ -36,15 +36,23 @@
         </div>
         <div class="am-g am-g-fixed">
             <div class="am-center lab-name">
-                labName：{{ user_recored.lab.name }}
+                labName：{{ user_record.lab.name }}
             </div>
             <div class="am-center created_time">
-                latestTiem/createdTime：{{ user_recored.created_time | date:"Y-m-d" }}
+                latestTiem/createdTime：{{ user_record.created_time | date:"Y-m-d" }}
             </div>
-            <a href="{% url 'labs_index' user_recored.course.id user_recored.lab.weight %}">
+            <a href="{% url 'labs:show_labs' user_record.course.id user_record.lab.weight %}">
                 <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
                     继续
                 </div>
+            </a>
+    <a href="{% url 'users:user_profile' user.id %}">Profile</a> |
+    <a href="{% url 'courses:courses_index' %}">Courses</a> |
+    <a href="{% url 'users:user_logout' %}">Logout</a> |
+
+    <div style="border:2px solid red">
+            <a href="{% url 'labs:labs_index' user_recored.course.id user_recored.lab.weight %}">
+                <p>course: {{ user_recored.course.name }}</p>
             </a>
         </div>
     {% else %}
@@ -186,6 +194,8 @@
             </div>
         </div>
     </div>
+    <a href="{% url 'users:user_login' %}">登录</a> |
+    <a href="{% url 'users:user_register' %}">Register</a>
 {% endif %}
     <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
         <div class="am-modal-dialog">

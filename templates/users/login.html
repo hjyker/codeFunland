@@ -10,21 +10,21 @@
 {% endblock %}
 
 {% block body %}
-<div class="contents">
-    <div class="am-g">
-        <div class="am-u-md-6 am-u-md-centered login-form">
-            {% form_extra form "user_login" %}
+    <div class="contents">
+        <div class="am-g">
+            <div class="am-u-md-6 am-u-md-centered login-form">
+                {% form_extra form "users:user_login" "登陆" %}
+            </div>
         </div>
     </div>
-</div>
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        {{ message.level }}--{{ message }}
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+            {{ message.level }}--{{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 {% endblock %}

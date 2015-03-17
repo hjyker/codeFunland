@@ -12,7 +12,7 @@
 
 {% for course in courses  %}
     {% if course.is_active %}
-    <a href="{% url 'labs_index' course.id 1 %}">
+    <a href="{% url 'labs:show_labs' course.id %}">
         <p>课程名称：{{ course.name }}</p>
     </a>
     {% else %}
