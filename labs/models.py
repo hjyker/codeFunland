@@ -18,12 +18,12 @@ class Labs(models.Model):
         verbose_name=u"实验描述"
     )
 
-    docker_image = models.URLField(
-        max_length=300,
-        blank=True,
-        null=True,
-        verbose_name=u"docker 容器"
-    )
+    # docker_image = models.URLField(
+        # max_length=300,
+        # blank=True,
+        # null=True,
+        # verbose_name=u"docker 容器"
+    # )
 
     views = models.IntegerField(
         default=0,
@@ -31,12 +31,12 @@ class Labs(models.Model):
         verbose_name=u"学习人数"
     )
 
-    document_link = models.URLField(
-        max_length=300,
-        blank=True,
-        null=True,
-        verbose_name=u"实验文档"
-    )
+    # document_link = models.URLField(
+        # max_length=300,
+        # blank=True,
+        # null=True,
+        # verbose_name=u"实验文档"
+    # )
 
     created_time = models.DateTimeField(
         default=timezone.now
@@ -49,3 +49,6 @@ class Labs(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    class Meta:
+        ordering = ["-created_time"]

@@ -8,7 +8,7 @@ register = template.Library()
 
 
 @register.inclusion_tag("snippets/form.html")
-def form_extra(form, action, methods="POST"):
+def form_extra(form, action, submit_value, methods="POST"):
     """
     Expand style of django form and customize more attributs for django form,
     example for, <input ...>, we can attach some new attribut "placeholder" or
@@ -16,8 +16,10 @@ def form_extra(form, action, methods="POST"):
 
     And the more disgin, look up the snippet "templates/snippets/form.html"
     """
+
     return {
         "form": form,
         "action": action,
+        "submit_value": submit_value,
         "methods": methods,
     }

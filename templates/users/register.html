@@ -11,7 +11,7 @@
 
 {% block body %}
 
-<!-- <form action="{% url 'user_register' %}" method='POST'>
+<!-- <form action="{% url 'users:user_register' %}" method='POST'>
     {% csrf_token %}
 
     {% if register_form %}
@@ -27,7 +27,7 @@
 <div class="contents">
     <div class="am-g">
         <div class="am-u-md-6 am-u-md-centered register-form">
-            {% form_extra register_form "user_register" %}
+            {% form_extra register_form "users:user_register" "注册" %}
         </div>
     </div>
 </div>
