@@ -16,13 +16,27 @@
 
 <header class="am-topbar am-topbar-fixed-top am-topbar-inverse">
     <h1 class="am-topbar-brand">
-        <a href="{% url 'courses_index' %}">Codeutopia</a>
+        <a href="{% url 'start.views.index' %}">Codeutopia</a>
     </h1>
 
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#doc-topbar-collapse'}">
         <span class="am-icon-bars"></span>
     </button>
-
+    
+    <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
+    {% if user.is_authenticated %}
+        <div class="am-topbar-right">
+            <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
+                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
+                    Me <span class="am-icon-caret-down"></span>
+                </button>
+                <ul class="am-dropdown-content">
+                    <li><a target="_blank" href="{% url 'user_profile' user.id %}">个人信息</a></li>
+                    <li><a href="{% url 'user_logout' %}">退出</a></li>
+                </ul>
+            </div>
+        </div>
+    {% else %}
         <div class="am-topbar-right">
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
                 <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
@@ -42,6 +56,7 @@
                 </button>
             </a>
         </div>
+    {% endif %}
     </div>
 </header>
 {% block body %}

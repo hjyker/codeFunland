@@ -3,16 +3,8 @@
 {% load static %}
 
 {% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/edit/edit_code.css' %}">
 <style type="text/css" media="screen">
-    #editor {
-        position: absolute;
-        top: 40px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin-top: 15px;
-    }
-
     .left-bar {
         width:700px;
         border:1px solid red;
@@ -22,18 +14,6 @@
         z-index:8;
         background-color: white;
     }
-
-    .middle-bar {
-
-    }
-
-    .foot-bar {
-        width:40px;
-        position:relative;
-        left: 900px;
-        z-index:9;
-    }
-
     .console {
         width:400px;
         border:1px solid red;
@@ -43,18 +23,78 @@
         z-index:11;
         background: #FFF;
     }
-
-    button {
-        width:100px;
-        height:40px;
-        background-color:#DC143C;
-        color:white;
-        border:none;
-    }
 </style>
 {% endblock %}
 
 {% block body %}
+<div class="contents">
+    <div class="am-g">
+        <div class="am-u-md-3">
+            <div class="doc-content">
+                <div class="doc-title">
+                    文档标题
+                </div>
+                <div class="doc-text">
+                    文档部分
+                    <p>labName:{{ lab.name }}</p>
+                    <p>labDescription:{{ lab.description }}</p>
+                    <p>labViews:{{ lab.views }}</p>
+
+                    {% if lab.document_link %}
+                        <p>{{ lab.document_link }}</p>
+                    {% else %}
+                        <p>documents of lab is not exist!</p>
+                    {% endif %}
+
+                    <p>{{ lab.created_time | date:'Y-m-d' }}</p>
+                    <p>{{ docker_info }}</p>
+                    
+                    {% if user_docker %}
+                        <p>{{ user_docker.docker_open_link }}</p>
+                    {% else %}
+                        <p>Null</p>
+                    {% endif %}
+                    
+                    {% if user_code %}
+                        <p>code path: <br/> {{ user_code.code_path }}</p>
+                        {% if user_code.code_content.0 == 'f' %}
+                            <p>code: <br/> {{ user_code.code_content | slice:"1:" }}</p>
+                        {% endif %}
+                        <p>version: <br/> {{ user_code.version }}</p>
+                    {% endif %}
+                </div>
+                <div class="doc-bottom-bar">
+                    <!-- <div class="am-g"> -->
+                        <div class="am-u-sm-6 am-center doc-btn">
+                            Q&A Forum
+                        </div>
+                        <div class="am-u-sm-6 am-center doc-btn">
+                            Glossary
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="am-u-md-9">
+            <div class="editor-content">
+                <div id="editor"></div>
+                <div class="editor-bottom-bar">
+                    <div class="am-btn am-btn-primary am-radius btn-save">
+                        保存并提交代码
+                    </div>
+                    <div class="am-btn am-radius btn-resite">
+                        重置代码/Next Lab
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="am-u-md-4">
+            结果部分
+        </div> -->
+    </div>
+</div>
+
+<!-- 
 <div>
     <div class="console">
         Welcome to CodeFunland :)
@@ -95,17 +135,18 @@
         <p><button id="run_code" type="button">Run Code</button></p>
         <p><button id="post_code" type="button">Next Lab</button></p>
     </div>
-</div>
+</div> -->
 {% endblock %}
 
 
 {% block js %}
-<script src="{% static 'ace-builds/ace.js' %}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="{% static 'ace-builds/ace.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/edit/edit_code.js' %}"></script>
 <script>
     var editor = ace.edit("editor");
     //editor.resize()
     editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/python");
+    editor.getSession().setMode("ace/mode/javascript");
     editor.getSession().setTabSize(4);
     document.getElementById('editor').style.fontSize='15px';
 </script>
