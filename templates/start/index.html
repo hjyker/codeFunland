@@ -1,8 +1,9 @@
 {% extends "base/normal_base.html" %}
 
-{% block title %}codeFunland{% endblock %}
-
 {% load static %}
+{% load custom_tags %}
+
+{% block title %}codeFunland{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/start/index.css' %}">
@@ -139,20 +140,13 @@
 {% else %}
     <div class="am-g">
         <div class="am-u-md-7 am-hide-sm-only">
-            <div class="wel-img">
-               <!--  <div class="word-box">
-                    <div class="result-word">
-                        Learn to code interactively, for free.
-                        <div class="tri"></div>
-                    </div>
-                </div> -->
-                <div class="result-content">
-                    Learn to code interactively, for free.
+            <div class="console-img">
+                <div class="console-panel">
+                    Codeutopia [版本 V1.3.1]<br/>
+                    Welcome to Codeutopia :)<br/>
+                    Learn to code interactively, for free.<br/>
+                    --> <span>~$</span>
                 </div>
-                <!-- <div class="keybord-top"></div>
-                <div class="keybord">
-                    <div class="touch"></div>
-                </div> -->
             </div>	
         </div>
         <div class="am-u-md-5">
@@ -162,7 +156,7 @@
                     <div class="am-u-sm-6 login">登录</div>
                 </div>
                 <div class="form-register">
-                    <div class="am-input-group">
+                    <!-- <div class="am-input-group">
                         <input type="text" class="am-form-field" placeholder="Email">
                     </div>
                     <div class="am-input-group">
@@ -171,7 +165,8 @@
                     <div class="am-input-group">
                         <input type="text" class="am-form-field" placeholder="Password">
                     </div>
-                    <div class="am-btn am-btn-danger am-center btn btn-register">注册</div>
+                    <div class="am-btn am-btn-danger am-center btn btn-register">注册</div> -->
+                    {% form_extra register_form "user_register" %}
                 </div>
                 <div class="form-login">
                     <div class="am-input-group">
@@ -192,7 +187,6 @@
         </div>
     </div>
 {% endif %}
-    <button class="am-btn am-btn-primary" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 600, height: 350}">Modal</button>
     <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
         <div class="am-modal-dialog">
             <div class="am-modal-hd">
@@ -203,7 +197,7 @@
                 <div class="am-g">
                     <div class="am-u-sm-6">
                         登录
-                        <!-- <div class="form-login"> -->
+                        <div class="login-form">
                             <div class="am-input-group">
                                 <input type="text" class="am-form-field" placeholder="Email or username">
                             </div>
@@ -217,11 +211,11 @@
                                 <div class="am-u-sm-10">Remember me</div>
                             </div>
                             <div class="am-btn am-btn-danger am-center btn login-btn">登录</div>
-                        <!-- </div> -->
+                        </div>
                     </div>
                     <div class="am-u-sm-6" style="border-left: 1px solid #ccc;">
                         注册
-                        <!-- <div class="form-register"> -->
+                        <div class="register-form">
                             <div class="am-input-group">
                                 <input type="text" class="am-form-field" placeholder="Email">
                             </div>
@@ -232,7 +226,7 @@
                                 <input type="text" class="am-form-field" placeholder="Password">
                             </div>
                             <div class="am-btn am-btn-danger am-center btn btn-register">注册</div>
-                        <!-- </div> -->
+                        </div>
                     </div>
                 </div>
             </div>

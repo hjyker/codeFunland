@@ -1,8 +1,13 @@
 {% extends "base/normal_base.html" %}
 
+{% load static %}
 {% load custom_tags %}
 
 {% block title %}注册{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/users/register.css' %}">
+{% endblock %}
 
 {% block body %}
 
@@ -18,6 +23,13 @@
     {% endif %}
     <input type="submit" value="submit" />
 </form> -->
-{% form_extra register_form "user_register" %}
+
+<div class="contents">
+    <div class="am-g">
+        <div class="am-u-md-6 am-u-md-centered register-form">
+            {% form_extra register_form "user_register" %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}
