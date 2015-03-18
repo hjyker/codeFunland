@@ -1,23 +1,30 @@
 # -*- coding: utf-8 -*-
 
 
-import hashlib
-
+import logging
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
 from django.contrib.auth import (
     authenticate, login, logout
 )
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.core.files import File
+# from django.core.files import File
 
 from users.forms import (
     UserLoginForm, UserRegisterForm, UserProfileForm
 )
 from users.models import UserProfile
+
+from users.utils import handle_upload_files
+
+
+logger = logging.getLogger("views_error")
+
+COOKIE_EXPIRY = 86400  # second, 2 days
+SESSION_IS = 0  # if remember_me == False, it's session
 
 
 def user_login(request):
@@ -34,9 +41,9 @@ def user_login(request):
             if user.is_active:
                 login(request, user)
                 if remember_me:
-                    request.session.set_expiry(86400)
+                    request.session.set_expiry(COOKIE_EXPIRY)
                 else:
-                    request.session.set_expiry(0)
+                    request.session.set_expiry(SESSION_IS)
 
                 messages.add_message(
                     request,
@@ -137,42 +144,31 @@ def update_avatar(request, user_id):
 
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            # try:
-            file = handle_upload_files(request.FILES['avatar_link'])
-            current_user.userprofile.avatar_link = 'avatar/' + file.name
-            current_user.userprofile.save()
-            # except:
-                # messages.add_message(
-                    # request,
-                    # messages.ERROR,
-                    # 'update avatar faiure!'
-                # )
-                # return redirect(
-                    # reverse('users.views.update_avatar', args=[user_id])
-                # )
-            return redirect(
-               reverse('users.views.user_profile', args=[user_id])
-           )
+            try:
+                file = handle_upload_files(request.FILES.get('avatar_link', ""))
+                current_user.userprofile.avatar_link = 'avatar/' + file.name
+                current_user.userprofile.save()
+            except IOError, ex:
+                logger.error(ex)
+                messages.add_message(request,
+                    messages.ERROR,
+                    "Failure of update avatar."
+                )
+            except ValueError, ex:
+                logger.error(ex)
+                error_msg = "Failure of updated avater: %s" % ex
+                messages.add_message(request,
+                    messages.ERROR,
+                    error_msg
+                )
+            finally:
+                return render(request,
+                    'users/profile.html',
+                )
+
 
     form = UserProfileForm()
-    return render(
-        request,
+    return render(request,
         'users/update_profile.html',
         {'form': form}
     )
-
-def handle_upload_files(file):
-    file.name = file.name.encode('utf-8')
-    file.name = "%s.jpg" % hashlib.md5(file.name).hexdigest()
-    file_path = "/home/zhangyd/codeFunland/media/avatar/" + file.name
-    with open(file_path, "wb+") as info:
-        for chunk in file.chunks():
-            info.write(chunk)
-    return file
-
-
-# def test1(request):
-    # return HttpResponse('test1')
-
-# def test2(request, var, test_var):
-    # return HttpResponse('test2 %s %s' % (var, test_var))

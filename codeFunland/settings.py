@@ -103,3 +103,52 @@ TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
 TEMPLATE_DIRS = [
     TEMPLATE_PATH,
 ]
+
+
+# Loggin config
+
+LOG_FILE_PATH = r"/home/tt/log_codeUtopia.log"
+LOGGING = {
+    "version" : 1,
+    "disable_existing_loggers": True,
+    "formatters": {
+        "verbose": {
+            "format": "<%(asctime)s> %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            "datefmt": "%d-%b-%Y %H:%M:%S"
+        },
+        "simple": {
+            "format": "---%(levelname)s %(message)s\n"
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": LOG_FILE_PATH,
+            "formatter": "verbose"
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple"
+        },
+        "error": {
+            "level": "ERROR",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOG_FILE_PATH,
+            "formatter": "simple"
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "propagate": True,
+            "level": "DEBUG"
+        },
+        "views_error": {
+            "handlers": ["console", "file"],
+            "propagate": False,
+            "level": "ERROR"
+        },
+    },
+}
