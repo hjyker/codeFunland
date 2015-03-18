@@ -2,7 +2,27 @@
 
 {% block title %}Update Your Avatar{% endblock %}
 
+{% load static %}
+
+{% block js %}
+<script type="text/javascript" src="{% static 'js/jquery.Jcrop.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/users/update_profile.js' %}"></script>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.Jcrop.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/users/update_profile.css' %}">
+{% endblock %}
+
 {% block body %}
+<img src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}"/>
+<img id="target" src="http://gtms02.alicdn.com/tps/i2/TB1a5ggHXXXXXcSaFXXA.YMHXXX-990-330.jpg">
+<div id="preview-pane">
+    <div class="preview-container">
+        <img src="http://gtms02.alicdn.com/tps/i2/TB1a5ggHXXXXXcSaFXXA.YMHXXX-990-330.jpg" class="jcrop-preview" alt="Preview" />
+    </div>
+</div>
+
 <form action="{% url 'users:update_avatar' user.id %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% if form %}

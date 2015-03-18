@@ -1,5 +1,6 @@
 .contents {
     padding: 20px 0;
+    background-color: #fff;
 }
 .console-panel {
     max-width: 610px;
@@ -18,12 +19,12 @@
 }
 .login-register {
     max-width: 300px;
-    height: 350px;
+    height: 370px;
     background-color: #ffffff;
     box-shadow: 0 0 1px #6c6c6c;
-    margin-top: 20px;
+    margin-top: 15px;
 }
-.form-login {
+.form-register {
     display: none;
 }
 .register,

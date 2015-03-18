@@ -5,14 +5,12 @@
 
 {% block title %}codeFunland{% endblock %}
 
-{% block style %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/start/index.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/courses/courses_index.css' %}">
-<link rel="stylesheet" type="text/css" href="{% static 'css/labs/show_labs.css' %}">
-{% endblock %}
-
 {% block js %}
 <script type="text/javascript" src="{% static 'js/start/index.js' %}"></script>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/start/index.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -20,138 +18,19 @@
 <div class="contents">
 {% if user.is_authenticated %}
     {% if user_record %}
-        <div class="am-center course-name">
-            {{ user_record.course.name }}
-        </div>
-        <div class="am-center lab-direction">
-            Learn the fundamentals of JavaScript, the programming language of the Web.
-        </div>
-        <div class="am-g am-g-fixed">
-            <div class="am-u-md-11">
-                <div class="am-progress am-progress-sm">
-                    <div class="am-progress-bar am-progress-bar-secondary"></div>
-                </div>
-            </div>
-            <div class="am-u-md-1 am-center progress-num">57%</div>
-        </div>
-        <div class="am-g am-g-fixed">
-            <div class="am-center lab-name">
-                labName：{{ user_record.lab.name }}
-            </div>
-            <div class="am-center created_time">
-                latestTiem/createdTime：{{ user_record.created_time | date:"Y-m-d" }}
-            </div>
-            <a href="{% url 'labs:show_labs' user_record.course.id user_record.lab.weight %}">
-                <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
-                    继续
-                </div>
-            </a>
-    <a href="{% url 'users:user_profile' user.id %}">Profile</a> |
-    <a href="{% url 'courses:courses_index' %}">Courses</a> |
-    <a href="{% url 'users:user_logout' %}">Logout</a> |
-
-    <div style="border:2px solid red">
-            <a href="{% url 'labs:labs_index' user_recored.course.id user_recored.lab.weight %}">
-                <p>course: {{ user_recored.course.name }}</p>
-            </a>
-        </div>
+        <!-- 登录并学习了课程 -->
+        
     {% else %}
-        <h1 class="am-center">Language Skills</h1>
-        <div class="am-center">
-            Learn core programming concepts and syntax for the world's most popular languages.
-        </div>
-        <div class="courses">
-            <div class="am-g">
-                <div class="am-u-md-4 course-box">
-                    <div class="course-item">
-                        <div class="am-center course-img">
-                            <i class="am-icon-jsfiddle"></i>
-                        </div>
-                        <div class="am-center course-title">
-                            JavaScript
-                        </div>
-                        <div class="am-center course-direction">
-                            Learn the fundamentals of JavaScript, the programming language of the Web.
-                        </div>
-                    </div>
-                </div>
-                <div class="am-u-md-4 course-box">
-                    <div class="course-item">
-                        <div class="am-center course-img">
-                            <i class="am-icon-html5"></i>
-                        </div>
-                        <div class="am-center course-title">
-                            HTML5
-                        </div>
-                        <div class="am-center course-direction">
-                            Learn how to create websites by structuring and styling your pages whith HTML.
-                        </div>
-                    </div>
-                </div>
-                <div class="am-u-md-4 course-box">
-                    <div class="course-item">
-                        <div class="am-center course-img">
-                            <i class="am-icon-css3"></i>
-                        </div>
-                        <div class="am-center course-title">
-                            CSS3
-                        </div>
-                        <div class="am-center course-direction">
-                            Learn how to create websites by structuring and styling your pages whith CSS.
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="am-g">
-                <div class="am-u-md-4 course-box">
-                    <div class="course-item">
-                        <div class="am-center course-img">
-                            <i class="am-icon-linux"></i>
-                        </div>
-                        <div class="am-center course-title">
-                            PHP
-                        </div>
-                        <div class="am-center course-direction">
-                            Learn to program in PHP a widespread language that powers sites like Facebook.
-                        </div>
-                    </div>
-                </div>
-                <div class="am-u-md-4 course-box">
-                    <div class="course-item">
-                        <div class="am-center course-img">
-                            <i class="am-icon-rocket"></i>
-                        </div>
-                        <div class="am-center course-title">
-                            Python
-                        </div>
-                        <div class="am-center course-direction">
-                            Learn to program in Python, a powerful language used by sites like YouTube and Dropbox.
-                        </div>
-                    </div>
-                </div>
-                <div class="am-u-md-4 course-box">
-                    <div class="course-item">
-                        <div class="am-center course-img">
-                            <i class="am-icon-diamond"></i>
-                        </div>
-                        <div class="am-center course-title">
-                            Ruby
-                        </div>
-                        <div class="am-center course-direcion">
-                            Learn to program in Ruby, a flexible language used to create sites like Codecademy.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- 登录但未学习课程 -->
     {% endif %}
 {% else %}
+    <!-- 未登录 -->
     <div class="am-g">
         <div class="am-u-md-7 am-hide-sm-only">
             <div class="console-img">
                 <div class="console-panel">
                     Codeutopia [版本 V1.3.1]<br/>
-                    Welcome to Codeutopia :)<br/>
+                    Welcome to Codeutopia : )<br/>
                     Learn to code interactively, for free.<br/>
                     --> <span>~$</span>
                 </div>
@@ -160,76 +39,19 @@
         <div class="am-u-md-5">
             <div class="login-register am-u-sm-centered">
                 <div class="am-g">
-                    <div class="am-u-sm-6 register active">创建账户</div>
-                    <div class="am-u-sm-6 login">登录</div>
-                </div>
-                <div class="form-register">
-                    <!-- <div class="am-input-group">
-                        <input type="text" class="am-form-field" placeholder="Email">
-                    </div>
-                    <div class="am-input-group">
-                        <input type="text" class="am-form-field" placeholder="Username">
-                    </div>
-                    <div class="am-input-group">
-                        <input type="text" class="am-form-field" placeholder="Password">
-                    </div>
-                    <div class="am-btn am-btn-danger am-center btn btn-register">注册</div> -->
-                    {% form_extra register_form "users:user_register" "注册" %}
+                    <div class="am-u-sm-6 login active">登录</div>
+                    <div class="am-u-sm-6 register">创建账户</div>
                 </div>
                 <div class="form-login">
-                    {% form_extra login_form "users:user_login" "登陆" %}
+                    {% form_extra login_form "users:user_login" "登录" %}
+                </div>
+                <div class="form-register">
+                    {% form_extra register_form "users:user_register" "注册" %}
                 </div>
             </div>
         </div>
     </div>
-    <a href="{% url 'users:user_login' %}">登录</a> |
-    <a href="{% url 'users:user_register' %}">Register</a>
 {% endif %}
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">
-                已有账户请登录，没有账户请先注册
-                <a href="javascript: void(0)" class="am-close" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                <div class="am-g">
-                    <div class="am-u-sm-6">
-                        登录
-                        <div class="login-form">
-                            <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Email or username">
-                            </div>
-                            <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Password">
-                            </div>
-                            <div class="am-g input-group">
-                                <div class="am-u-sm-2">
-                                    <input type="checkbox" class="am-form-field">
-                                </div>
-                                <div class="am-u-sm-10">Remember me</div>
-                            </div>
-                            <div class="am-btn am-btn-danger am-center btn login-btn">登录</div>
-                        </div>
-                    </div>
-                    <div class="am-u-sm-6" style="border-left: 1px solid #ccc;">
-                        注册
-                        <div class="register-form">
-                            <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Email">
-                            </div>
-                            <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Username">
-                            </div>
-                            <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Password">
-                            </div>
-                            <div class="am-btn am-btn-danger am-center btn btn-register">注册</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 {{ nowtime }}
 {% endblock %}
