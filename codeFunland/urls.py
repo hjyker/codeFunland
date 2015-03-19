@@ -11,9 +11,9 @@ urlpatterns = patterns('',
     url(r'^yoyo/', include(admin.site.urls)),
     url(r'^$', 'start.views.index'),
     url(r'^index/$', 'start.views.index'),
-    url(r'^user/', include('users.urls')),
-    url(r'^course/', include('courses.urls')),
-    url(r'^labs/', include('labs.urls')),
+    url(r'^users/', include('users.urls', namespace="users")),
+    url(r'^courses/', include('courses.urls', namespace="courses")),
+    url(r'^labs/', include('labs.urls', namespace="labs")),
 )
 
 # urlpatterns += patterns('users.views',

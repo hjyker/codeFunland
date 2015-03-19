@@ -185,7 +185,7 @@
         var code_path = "/home/code/work/{{ lab.id }}"
         var code_content_latest = editor.getValue();
         console.log({{ lab.id }})
-        $.post("{% url "save_user_code" %}",
+        $.post("{% url "labs:save_user_code" %}",
             {
                 lab_id: {{ lab.id }},
                 code_path: code_path,

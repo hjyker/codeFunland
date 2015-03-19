@@ -13,5 +13,5 @@
     <img style="width:160px;height:80px;" src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}"  />
 </div>
 
-<a href="{% url 'update_avatar' user.id %}">Update Your Avatar?</a>
+<a href="{% url 'users:update_avatar' user.id %}">Update Your Avatar?</a>
 {% endblock %}
