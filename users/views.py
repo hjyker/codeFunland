@@ -17,7 +17,7 @@ from users.forms import (
     UserLoginForm, UserRegisterForm, UserProfileForm
 )
 from users.models import UserProfile
-
+from courses.models import LearnRecord
 from users.utils import handle_upload_files
 
 
@@ -29,6 +29,11 @@ SESSION_IS = 0  # if remember_me == False, it's session
 
 def user_login(request):
     form = UserLoginForm()
+
+    if request.user.is_authenticated():
+        return redirect(
+            reverse("courses.views.index", args=[])
+        )
 
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -50,9 +55,19 @@ def user_login(request):
                     messages.SUCCESS,
                     'Sign in Successful!'
                 )
-                return redirect(
-                    reverse('start.views.index', args=[])
-                )
+
+                user_record = LearnRecord.objects.filter(
+                        user=user
+                ).order_by("-created_time")
+
+                if not user_record.exists():
+                    return redirect(
+                        reverse('courses.views.index', args=[])
+                    )
+                else:
+                    return redirect(
+                        reverse("labs.views.show_labs", args=[])
+                    )
             else:
                 messages.add_message(
                     request,
@@ -89,6 +104,11 @@ def user_logout(request):
 
 
 def user_register(request):
+    if request.user.is_authenticated():
+        return redirect(
+            reverse("courses.views.index", args=[]))
+
+
     if request.method == "POST":
         register_form = UserRegisterForm(data=request.POST)
 

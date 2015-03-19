@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from courses.models import (Courses, LearnRecored)
+from courses.models import (Courses, LearnRecord)
 
 
 class CoursesAdmin(admin.ModelAdmin):
@@ -11,5 +11,5 @@ class CoursesAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(Courses, CoursesAdmin)
-admin.site.register(LearnRecored)
+admin.site.register(LearnRecord)
 

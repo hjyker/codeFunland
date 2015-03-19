@@ -59,10 +59,10 @@ class Courses(models.Model):
         related_name='owner'
     )
 
-    learn_recored_mtm = models.ManyToManyField(
+    users_courses = models.ManyToManyField(
         User,
-        through='LearnRecored',
-        verbose_name='学习记录',
+        through='UsersCourses',
+        verbose_name=u'课程完成情况',
         related_name='user_course_related'
     )
 
@@ -81,7 +81,20 @@ class Courses(models.Model):
             # )
 
 
-class LearnRecored(models.Model):
+class UsersCourses(models.Model):
+    user = models.ForeignKey(User)
+    course = models.ForeignKey('Courses')
+    is_finished = models.BooleanField(
+        default = False,
+        verbose_name = u"课程完成状态"
+    )
+
+    created_time = models.DateTimeField(
+        default=timezone.now
+    )
+
+
+class LearnRecord(models.Model):
     user = models.ForeignKey(User)
     course = models.ForeignKey('Courses')
     lab = models.ForeignKey('labs.Labs')

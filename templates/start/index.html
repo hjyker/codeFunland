@@ -18,9 +18,9 @@
 
 <div class="contents">
 {% if user.is_authenticated %}
-    {% if user_recored %}
+    {% if user_record %}
         <div class="am-center course-name">
-            {{ user_recored.course.name }}
+            {{ user_record.course.name }}
         </div>
         <div class="am-center lab-direction">
             Learn the fundamentals of JavaScript, the programming language of the Web.
@@ -35,12 +35,12 @@
         </div>
         <div class="am-g am-g-fixed">
             <div class="am-center lab-name">
-                labName：{{ user_recored.lab.name }}
+                labName：{{ user_record.lab.name }}
             </div>
             <div class="am-center created_time">
-                latestTiem/createdTime：{{ user_recored.created_time | date:"Y-m-d" }}
+                latestTiem/createdTime：{{ user_record.created_time | date:"Y-m-d" }}
             </div>
-            <a href="{% url 'labs_index' user_recored.course.id user_recored.lab.weight %}">
+            <a href="{% url 'labs_index' user_record.course.id user_record.lab.weight %}">
                 <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
                     继续
                 </div>
@@ -153,7 +153,7 @@
                 <div class="keybord">
                     <div class="touch"></div>
                 </div> -->
-            </div>	
+            </div>
         </div>
         <div class="am-u-md-5">
             <div class="login-register am-u-sm-centered">

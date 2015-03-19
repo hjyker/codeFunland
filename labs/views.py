@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.http import (HttpResponse, HttpResponseNotFound)
 
 from users.models import (UserDockers, UserCode)
-from courses.models import (LearnRecored, Courses)
+from courses.models import (LearnRecord, Courses)
 from labs.models import Labs
 from labs.utils import (
     docker_ps, docker_init_container_ports, docker_port
@@ -26,7 +26,30 @@ EXPIRES = datetime.timedelta(hours=EXPIRES_HOURS)
 
 
 @login_required
-def lab_index(request, course_id, lab_weight):
+def show_labs(request, course_id):
+    current_user = request.user
+    course_id = int(course_id)
+    course = Courses.objects.get(
+        id=course_id
+    )
+    learn_records = course.learnrecord_set.filter(
+        user=current_user
+    ).order_by("-created_time")
+
+    labs_id = [learn_record.lab.id for learn_record in learn_records]
+
+    return render(request,
+        "labs/show_labs.html",
+        {
+            "course": course,
+            "user_record_latest": learn_records.first(),
+            "labs_id": labs_id,
+        }
+    )
+
+
+@login_required
+def edit_code(request, course_id, lab_weight):
     course_id = int(course_id)
     lab_weight = int(lab_weight)
     current_user = request.user
@@ -131,8 +154,8 @@ def save_user_code(request):
                 '-created_time'
                 ).first()
 
-            # save learn recored for current user
-            learn_recored = LearnRecored.objects.create(
+            # save learn record for current user
+            learn_record = LearnRecord.objects.create(
                 user=current_user,
                 course=course,
                 lab=lab
