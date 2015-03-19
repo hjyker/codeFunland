@@ -3,7 +3,9 @@
 }
 .user-img {
     width: 200px;
+    max-height: 200px;
     margin: 0 auto;
+    overflow: hidden;
 }
 .user-img img {
     width: 100%;

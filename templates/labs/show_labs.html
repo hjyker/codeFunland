@@ -17,10 +17,10 @@
         <div class="course-content">
         {% if user_record_latest %}
             <!-- 学习过课程 -->
-            <div class="am-center course-name">
+            <div class="am-text-center course-name">
                 {{ user_record_latest.course.name }}
             </div>
-            <div class="am-center lab-direction">
+            <div class="am-text-center lab-direction">
                 Learn the fundamentals of JavaScript, the programming language of the Web.
             </div>
             <div class="am-g am-g-fixed">
@@ -29,13 +29,13 @@
                         <div class="am-progress-bar am-progress-bar-secondary"></div>
                     </div>
                 </div>
-                <div class="am-u-md-1 am-center progress-num">57%</div>
+                <div class="am-u-md-1 am-text-center progress-num">57%</div>
             </div>
             <div class="am-g am-g-fixed">
-                <div class="am-center lab-name">
+                <div class="am-text-center lab-name">
                     labName：{{ user_record_latest.lab.name }}
                 </div>
-                <div class="am-center created_time">
+                <div class="am-text-center created_time">
                     latestTiem/createdTime：{{ user_record_latest.created_time | date:"Y-m-d" }}
                 </div>
                 <a href="{% url 'labs:edit_code' user_record_latest.course.id user_record_latest.lab.weight %}">
@@ -46,10 +46,10 @@
             </div>
         {% else %}
             <!-- 未学习过课程 -->
-            <div class="am-center course-name">
+            <div class="am-text-center course-name">
                 {{ course.name }}
             </div>
-            <div class="am-center lab-direction">
+            <div class="am-text-center lab-direction">
                 Learn the fundamentals of JavaScript, the programming language of the Web.
             </div>
             <div class="am-g am-g-fixed">
@@ -58,13 +58,13 @@
                         <div class="am-progress-bar am-progress-bar-secondary"></div>
                     </div>
                 </div>
-                <div class="am-u-md-1 am-center progress-num">0%</div>
+                <div class="am-u-md-1 am-text-center progress-num">0%</div>
             </div>
             <div class="am-g am-g-fixed">
-                <div class="am-center lab-name">
+                <div class="am-text-center lab-name">
                     labName：{{ user_record.lab.name }}
                 </div>
-                <div class="am-center created_time">
+                <div class="am-text-center created_time">
                     latestTiem/createdTime：{{ user_record.created_time | date:"Y-m-d" }}
                 </div>
                 <a href="{% url 'labs:edit_code' course.id 1 %}">
@@ -81,13 +81,13 @@
             <div class="am-g">
                 <div class="am-u-md-6 am-u-md-offset-3 complete">
                     <div class="am-g">
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-check-circle"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
                             已学过该实验(换成图形化) -- {{ lab }}
                         </div>
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
                         </div>
                     </div>
@@ -97,13 +97,13 @@
             <div class="am-g">
                 <div class="am-u-md-6 am-u-md-offset-3 uncomplete">
                     <div class="am-g">
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-tag"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
                             {{ lab }}
                         </div>
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
                         </div>
                     </div>
@@ -114,13 +114,13 @@
             <div class="am-g">
                 <div class="am-u-md-6 am-u-md-offset-3 complete">
                     <div class="am-g">
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-check-circle"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
                             实验课一
                         </div>
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
                         </div>
                     </div>
@@ -129,13 +129,13 @@
             <div class="am-g">
                 <div class="am-u-md-6 am-u-md-offset-3 uncomplete">
                     <div class="am-g">
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-tag"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
                             实验课二
                         </div>
-                        <div class="am-u-sm-2 am-center icon">
+                        <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
                         </div>
                     </div>
