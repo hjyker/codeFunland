@@ -1,8 +1,5 @@
-html,
-body {
-	padding: 0;
-	margin: 0;
-	background-color: #f1f2f2;
+.contents {
+    padding: 20px 0;
 }
 .word-box {
     width: 300px;
@@ -31,25 +28,27 @@ body {
     -ms-transform: rotate(60deg);
 }
 .result-content {
+    width: 250px;
+    padding: 10px;
     background-color: #0e90d2;
     border: 10px solid #fff;
     border-radius: 5%;
     color: #fff;
     margin: 0 auto;
-    width: 250px;
     min-height: 170px;
-    box-shadow: 0 1px 0 1px #093552;
+    box-shadow: 0 0 0 1px #093552;
 }
 .result-content p {
     margin: 10px 0;
 }
 .keybord-top {
-    border-bottom:6px solid #fff;
+    border-bottom:6px solid #ccc;
     border-left: 35px solid transparent;
     border-right: 35px solid transparent;
     height: 0;
-    width: 245px;
+    width: 315px;
     margin: 1px auto 0 auto;
+    box-shadow-bottom: 0 0 1px #000;
 }
 .keybord {
     height: 10px;
@@ -68,7 +67,6 @@ body {
 .login-register {
     max-width: 300px;
     height: 350px;
-    margin-top: 30px;
     background-color: #ffffff;
     box-shadow: 0 0 1px #6c6c6c;
 }

@@ -1,0 +1,10 @@
+.contents {
+    margin: 30px 0;
+}
+.user-img {
+    width: 200px;
+    margin: 0 auto;
+}
+.user-img img {
+    width: 100%;
+}

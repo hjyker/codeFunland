@@ -4,10 +4,7 @@
 	box-shadow: 0 0 1px #ccc; 
 	background-color: #fff;
 }
-.am-center {
-	text-align: center;
-}
-.lab-title {
+.course-name {
 	font-size: 40px;
 }
 .btn {

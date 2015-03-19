@@ -16,17 +16,10 @@
 
 {% block body %}
 
+<div class="contents">
 {% if user.is_authenticated %}
-
-    <!--
-    <a href="{% url 'user_profile' user.id %}">Profile</a> |
-    <a href="{% url 'courses_index' %}">Courses</a> |
-    <a href="{% url 'user_logout' %}">Logout</a> |
-    -->
-
-    <div class="contents">
     {% if user_recored %}
-        <div class="am-center lab-title">
+        <div class="am-center course-name">
             {{ user_recored.course.name }}
         </div>
         <div class="am-center lab-direction">
@@ -41,19 +34,18 @@
             <div class="am-u-md-1 am-center progress-num">57%</div>
         </div>
         <div class="am-g am-g-fixed">
+            <div class="am-center lab-name">
+                labName：{{ user_recored.lab.name }}
+            </div>
+            <div class="am-center created_time">
+                latestTiem/createdTime：{{ user_recored.created_time | date:"Y-m-d" }}
+            </div>
             <a href="{% url 'labs_index' user_recored.course.id user_recored.lab.weight %}">
                 <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
                     继续
                 </div>
             </a>
         </div>
-        
-        <a href="{% url 'labs_index' user_recored.course.id user_recored.lab.weight %}">
-            <p>course: {{ user_recored.course.name }}</p>
-        </a>
-        <p>lab: {{ user_recored.lab.name }}</p>
-        <p>latest learn: {{ user_recored.created_time | date:"Y-m-d" }}</p>
-        <p></p>
     {% else %}
         <h1 class="am-center">Language Skills</h1>
         <div class="am-center">
@@ -144,64 +136,108 @@
             </div>
         </div>
     {% endif %}
-    </div>
 {% else %}
-    <div class="contents">
-        <div class="am-g">
-            <div class="am-u-md-7 am-hide-sm-only">
-                <div class="wel-img">
-                    <div class="word-box">
-                        <div class="result-word">
-                            Learn to code interactively, for free.
-                            <div class="tri"></div>
+    <div class="am-g">
+        <div class="am-u-md-7 am-hide-sm-only">
+            <div class="wel-img">
+               <!--  <div class="word-box">
+                    <div class="result-word">
+                        Learn to code interactively, for free.
+                        <div class="tri"></div>
+                    </div>
+                </div> -->
+                <div class="result-content">
+                    Learn to code interactively, for free.
+                </div>
+                <!-- <div class="keybord-top"></div>
+                <div class="keybord">
+                    <div class="touch"></div>
+                </div> -->
+            </div>	
+        </div>
+        <div class="am-u-md-5">
+            <div class="login-register am-u-sm-centered">
+                <div class="am-g">
+                    <div class="am-u-sm-6 register active">创建账户</div>
+                    <div class="am-u-sm-6 login">登录</div>
+                </div>
+                <div class="form-register">
+                    <div class="am-input-group">
+                        <input type="text" class="am-form-field" placeholder="Email">
+                    </div>
+                    <div class="am-input-group">
+                        <input type="text" class="am-form-field" placeholder="Username">
+                    </div>
+                    <div class="am-input-group">
+                        <input type="text" class="am-form-field" placeholder="Password">
+                    </div>
+                    <div class="am-btn am-btn-danger am-center btn btn-register">注册</div>
+                </div>
+                <div class="form-login">
+                    <div class="am-input-group">
+                        <input type="text" class="am-form-field" placeholder="Email or username">
+                    </div>
+                    <div class="am-input-group">
+                        <input type="text" class="am-form-field" placeholder="Password">
+                    </div>
+                    <div class="am-g input-group">
+                        <div class="am-u-sm-2">
+                            <input type="checkbox" class="am-form-field">
                         </div>
+                        <div class="am-u-sm-10">Remember me</div>
                     </div>
-                    <div class="result-content"></div>
-                    <div class="keybord-top"></div>
-                    <div class="keybord">
-                        <div class="touch"></div>
-                    </div>
-                </div>	
+                    <div class="am-btn am-btn-danger am-center btn login-btn">登录</div>
+                </div>
             </div>
-            <div class="am-u-md-5">
-                <div class="login-register am-u-sm-centered">
-                    <div class="am-g">
-                        <div class="am-u-sm-6 register active">创建账户</div>
-                        <div class="am-u-sm-6 login">登录</div>
-                    </div>
-                    <div class="form-register">
-                        <div class="am-input-group">
-                            <input type="text" class="am-form-field" placeholder="Email">
-                        </div>
-                        <div class="am-input-group">
-                            <input type="text" class="am-form-field" placeholder="Username">
-                        </div>
-                        <div class="am-input-group">
-                            <input type="text" class="am-form-field" placeholder="Password">
-                        </div>
-                        <div class="am-btn am-btn-danger am-center btn btn-register">注册</div>
-                    </div>
-                    <div class="form-login">
-                        <div class="am-input-group">
-                            <input type="text" class="am-form-field" placeholder="Email or username">
-                        </div>
-                        <div class="am-input-group">
-                            <input type="text" class="am-form-field" placeholder="Password">
-                        </div>
-                        <div class="am-g input-group">
-                            <div class="am-u-sm-2">
-                                <input type="checkbox" class="am-form-field">
+        </div>
+    </div>
+{% endif %}
+    <button class="am-btn am-btn-primary" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 600, height: 350}">Modal</button>
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">
+                已有账户请登录，没有账户请先注册
+                <a href="javascript: void(0)" class="am-close" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd">
+                <div class="am-g">
+                    <div class="am-u-sm-6">
+                        登录
+                        <!-- <div class="form-login"> -->
+                            <div class="am-input-group">
+                                <input type="text" class="am-form-field" placeholder="Email or username">
                             </div>
-                            <div class="am-u-sm-10">Remember me</div>
-                        </div>
-                        <div class="am-btn am-btn-danger am-center btn login-btn">登录</div>
+                            <div class="am-input-group">
+                                <input type="text" class="am-form-field" placeholder="Password">
+                            </div>
+                            <div class="am-g input-group">
+                                <div class="am-u-sm-2">
+                                    <input type="checkbox" class="am-form-field">
+                                </div>
+                                <div class="am-u-sm-10">Remember me</div>
+                            </div>
+                            <div class="am-btn am-btn-danger am-center btn login-btn">登录</div>
+                        <!-- </div> -->
+                    </div>
+                    <div class="am-u-sm-6" style="border-left: 1px solid #ccc;">
+                        注册
+                        <!-- <div class="form-register"> -->
+                            <div class="am-input-group">
+                                <input type="text" class="am-form-field" placeholder="Email">
+                            </div>
+                            <div class="am-input-group">
+                                <input type="text" class="am-form-field" placeholder="Username">
+                            </div>
+                            <div class="am-input-group">
+                                <input type="text" class="am-form-field" placeholder="Password">
+                            </div>
+                            <div class="am-btn am-btn-danger am-center btn btn-register">注册</div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <a href="{% url 'user_login' %}">登录</a> |
-    <a href="{% url 'user_register' %}">Register</a>
-{% endif %}
+</div>
 {{ nowtime }}
 {% endblock %}

@@ -8,6 +8,7 @@
     <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/amazeui.min.js' %}"></script>
     <link type="text/css" rel="stylesheet" href="{% static 'css/amazeui.min.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/common.css' %}">
     {% block static_src %}{% endblock %}
     {% block style %}{% endblock %}
 </head>
@@ -25,10 +26,16 @@
     
     <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
     {% if user.is_authenticated %}
-        <div class="am-topbar-right">
+        <div class="am-topbar-right"> |
+            <a href="{% url 'user_profile' user.id %}">Profile</a> |
+            <a href="{% url 'courses_index' %}">Courses</a> |
+            <a href="{% url 'user_logout' %}">Logout</a>
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
                 <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
-                    Me <span class="am-icon-caret-down"></span>
+                    <div class="haeder-user-name">
+                        {{ user.username }}&nbsp;
+                    </div> 
+                    <span class="am-icon-caret-down"></span>
                 </button>
                 <ul class="am-dropdown-content">
                     <li><a target="_blank" href="{% url 'user_profile' user.id %}">个人信息</a></li>
