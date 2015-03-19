@@ -7,22 +7,23 @@
         {% if field|fieldtype == "TextInput" %}
             <div class="am-input-group">
                 {{ field|addattrs:"class=am-form-field,placeholder=Username" }}
-                <!-- <input type="text" class="am-form-field" placeholder="Email"> -->
+            </div>
+        {% elif field|fieldtype == "EmailInput" %}
+            <div class="am-input-group">
+                {{ field|addattrs:"class=am-form-field,placeholder=Email" }}
             </div>
         {% elif field|fieldtype == "PasswordInput" %}
              <div class="am-input-group">
                  {{ field|addattrs:"class=am-form-field,placeholder=Password" }}
-                <!-- <input type="text" class="am-form-field" placeholder="Password"> -->
             </div>
         {% elif field|fieldtype == "CheckboxInput" %}
         <div class="am-g input-group">
             <div class="am-u-sm-2">
                 {{ field|addattrs:"class=am-form-field" }}
-                <!-- <input type="checkbox" class="am-form-field"> -->
             </div>
             <div class="am-u-sm-10">Remember me</div>
         </div>
         {% endif %}
     {% endfor %}
-    <div class="am-btn am-btn-danger am-center btn btn-register">注册</div>
+    <input type="submit" class="am-btn am-btn-danger am-center btn btn-register submit-btn" value="登录Bug"/>
 </form>

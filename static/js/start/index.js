@@ -16,6 +16,6 @@ function onFun(){
 		$('.form-register').css('display','none');
 	});
 	$('.login-btn').on('click', function(){
-		location.href="/simpleBlog/2015/03/08/courses.html";
+		//location.href="/simpleBlog/2015/03/08/courses.html";
 	})
 };
