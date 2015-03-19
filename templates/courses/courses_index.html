@@ -20,7 +20,7 @@
         {% if user.is_authenticated %}
             <a href="{% url 'labs:show_labs' course.id %}">
         {% else %}
-            <a href="#" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 650, height: 380}">
+            <a href="#" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 680, height: 400}">
         {% endif %}
                 <div class="am-u-md-4 course-box">
                     <div class="course-item">
@@ -69,14 +69,14 @@
                     <div class="am-u-sm-6">
                         <div class="login-form">
                             <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Email or username">
+                                <input type="text" placeholder="Email or username">
                             </div>
                             <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Password">
+                                <input type="text" placeholder="Password">
                             </div>
                             <div class="am-g input-group">
                                 <div class="am-u-sm-1">
-                                    <input type="checkbox" name="remember_me" id="id_remember_me" class="am-form-field">
+                                    <input type="checkbox" name="remember_me" id="id_remember_me" class="am-checkbox">
                                 </div>
                                 <div class="am-u-sm-5">自动登录</div>
                                 <div class="am-u-sm-5 am-text-center">
@@ -91,16 +91,16 @@
                     <div class="am-u-sm-6" style="border-left: 1px solid #ccc;">
                         <div class="register-form">
                             <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Email">
+                                <input type="text" placeholder="Email">
                             </div>
                             <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Username">
+                                <input type="text" placeholder="Username">
                             </div>
                             <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Password">
+                                <input type="text" placeholder="Password">
                             </div>
                             <div class="am-input-group">
-                                <input type="text" class="am-form-field" placeholder="Password">
+                                <input type="text" placeholder="Password">
                             </div>
                             <div class="submit-btns input-group">
                                 <input type="submit" value="注册" class="am-btn am-btn-danger am-center btn">

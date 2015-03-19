@@ -1,28 +1,28 @@
 {% load custom_filters %}
 
-<form id="login_form" action="{% url action %}" method="{{ methods }}">
+<form id="login_form" class="am-form" action="{% url action %}" method="{{ methods }}">
     {% csrf_token %}
 
     {% for field in form %}
         {% if field|fieldtype == "TextInput" %}
             <div class="am-input-group">
-                {{ field|addattrs:"class=am-form-field,placeholder=Username" }}
+                {{ field|addattrs:"placeholder=Username" }}
                 {{ field.errors }}
             </div>
         {% elif field|fieldtype == "EmailInput" %}
             <div class="am-input-group">
-                {{ field|addattrs:"class=am-form-field,placeholder=Email" }}
+                {{ field|addattrs:"placeholder=Email" }}
                 {{ field.errors }}
             </div>
         {% elif field|fieldtype == "PasswordInput" %}
             <div class="am-input-group">
-                 {{ field|addattrs:"class=am-form-field,placeholder=Password" }}
+                 {{ field|addattrs:"placeholder=Password" }}
                  {{ field.errors }}
             </div>
         {% elif field|fieldtype == "CheckboxInput" %}
             <div class="am-g input-group">
                 <div class="am-u-sm-1">
-                    {{ field|addattrs:"class=am-form-field" }}
+                    {{ field|addattrs:"class=am-checkbox" }}
                     {{ field.errors }}
                 </div>
                 <div class="am-u-sm-5">自动登录</div>

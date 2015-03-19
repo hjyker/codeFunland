@@ -4,19 +4,23 @@
     background-color: #fff;
 }
 .am-input-group {
+    min-width: 240px;
     margin: 0 auto 20px;
+}
+input[type="text"] {
+    width: 100%;
 }
 .am-g .am-g {
     margin: -5px auto 15px;
 }
 .input-group {
-    max-width: 229px;
+    max-width: 240px;
 }
 input[type="checkbox"] {
-    margin: 8px 0 0;
+    width: 13px;
+    height: 13px;
 }
 .submit-btns {
-    width: 100%;
     margin: 0 auto;
 }
 input[type="submit"] {
