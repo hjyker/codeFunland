@@ -107,7 +107,7 @@ TEMPLATE_DIRS = [
 
 # Loggin config
 
-LOG_FILE_PATH = r"/home/tt/log_codeUtopia.log"
+LOG_FILE_PATH = r"/tmp/log_codeUtopia.log"
 LOGGING = {
     "version" : 1,
     "disable_existing_loggers": True,
