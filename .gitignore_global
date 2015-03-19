@@ -1,4 +1,11 @@
 *.pyc
 media/*
-migration/*
-!migration/__init__.py
+migrations/*
+!migrations/__init__.py
+
+users/migrations/*
+courses/migrations/*
+labs/migrations/*
+!users/migrations/__init__.py
+!courses/migrations/__init__.py
+!labs/migrations/__init__.py

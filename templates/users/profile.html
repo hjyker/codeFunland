@@ -9,8 +9,6 @@
 {% endblock %}
 
 {% block body %}
-
-
 <div class="contents">
     <div class="am-center">
         <div class="user-img">
@@ -23,9 +21,10 @@
             {{ user.username }}
         </div>
         <div class="user-email">
-            {{ user.email }}        
+            {{ user.email }}
         </div>
     </div>
 </div>
 
+<a href="{% url 'users:update_avatar' user.id %}">Update Your Avatar?</a>
 {% endblock %}

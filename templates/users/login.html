@@ -1,12 +1,12 @@
 {% extends "base/normal_base.html" %}
 
-{% load custom_tags %}
-
 {% block title %}登录{% endblock %}
+
+{% load custom_tags %}
 
 {% block body %}
     {% form_extra form "user_login" %}
-    
+
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}

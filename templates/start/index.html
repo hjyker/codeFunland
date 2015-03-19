@@ -40,10 +40,18 @@
             <div class="am-center created_time">
                 latestTiem/createdTime：{{ user_record.created_time | date:"Y-m-d" }}
             </div>
-            <a href="{% url 'labs_index' user_record.course.id user_record.lab.weight %}">
+            <a href="{% url 'labs:show_labs' user_record.course.id user_record.lab.weight %}">
                 <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
                     继续
                 </div>
+    <a href="{% url 'users:user_profile' user.id %}">Profile</a> |
+    <a href="{% url 'courses:courses_index' %}">Courses</a> |
+    <a href="{% url 'users:user_logout' %}">Logout</a> |
+
+    <div style="border:2px solid red">
+        {% if user_recored %}
+            <a href="{% url 'labs:labs_index' user_recored.course.id user_recored.lab.weight %}">
+                <p>course: {{ user_recored.course.name }}</p>
             </a>
         </div>
     {% else %}
@@ -191,6 +199,8 @@
             </div>
         </div>
     </div>
+    <a href="{% url 'users:user_login' %}">登录</a> |
+    <a href="{% url 'users:user_register' %}">Register</a>
 {% endif %}
     <button class="am-btn am-btn-primary" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 600, height: 350}">Modal</button>
     <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
