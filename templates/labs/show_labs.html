@@ -28,7 +28,7 @@
         <div class="am-center created_time">
             latestTiem/createdTime：{{ user_record_latest.created_time | date:"Y-m-d" }}
         </div>
-        <a href="{% url 'edit_code' user_record_latest.course.id user_record_latest.lab.weight %}">
+        <a href="{% url 'labs:edit_code' user_record_latest.course.id user_record_latest.lab.weight %}">
             <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
                 继续
             </div>
@@ -47,7 +47,7 @@
                 <div class="am-progress-bar am-progress-bar-secondary"></div> <div class="am-u-md-1 am-center progress-num">0%</div>
     </div>
     <div class="am-g am-g-fixed">
-            <a href="{% url 'edit_code' course.id 1 %}">
+            <a href="{% url 'labs:edit_code' course.id 1 %}">
             <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
                 开始
             </div>

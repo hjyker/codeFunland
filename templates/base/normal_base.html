@@ -27,9 +27,9 @@
     <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
     {% if user.is_authenticated %}
         <div class="am-topbar-right"> |
-            <a href="{% url 'user_profile' user.id %}">Profile</a> |
-            <a href="{% url 'courses_index' %}">Courses</a> |
-            <a href="{% url 'user_logout' %}">Logout</a>
+            <a href="{% url 'users:user_profile' user.id %}">Profile</a> |
+            <a href="{% url 'courses:courses_index' %}">Courses</a> |
+            <a href="{% url 'users:user_logout' %}">Logout</a>
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
                 <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
                     <div class="haeder-user-name">
@@ -38,8 +38,8 @@
                     <span class="am-icon-caret-down"></span>
                 </button>
                 <ul class="am-dropdown-content">
-                    <li><a target="_blank" href="{% url 'user_profile' user.id %}">个人信息</a></li>
-                    <li><a href="{% url 'user_logout' %}">退出</a></li>
+                    <li><a target="_blank" href="{% url 'users:user_profile' user.id %}">个人信息</a></li>
+                    <li><a href="{% url 'users:user_logout' %}">退出</a></li>
                 </ul>
             </div>
         </div>

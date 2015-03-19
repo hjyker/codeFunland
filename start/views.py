@@ -7,11 +7,10 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 
 
-
 def index(request):
     if request.user.is_authenticated():
         return redirect(
-            reverse("show_labs", args=[])
+            reverse("courses:courses_index", args=[])
         )
 
     return render(

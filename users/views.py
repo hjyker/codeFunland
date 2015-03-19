@@ -32,7 +32,7 @@ def user_login(request):
 
     if request.user.is_authenticated():
         return redirect(
-            reverse("courses.views.index", args=[])
+            reverse("courses:courses_index", args=[])
         )
 
     if request.method == 'POST':
@@ -62,11 +62,11 @@ def user_login(request):
 
                 if not user_record.exists():
                     return redirect(
-                        reverse('courses.views.index', args=[])
+                        reverse('courses:courses_index', args=[])
                     )
                 else:
                     return redirect(
-                        reverse("labs.views.show_labs", args=[])
+                        reverse("labs:show_labs", args=[])
                     )
             else:
                 messages.add_message(
@@ -75,12 +75,12 @@ def user_login(request):
                     'Sorry, please active your account!'
                 )
                 return redirect(
-                    reverse('users.views.user_login', args=[])
+                    reverse('users:user_login', args=[])
                 )
         else:
             messages.add_message(request, messages.ERROR, 'Sign in failure!')
             return redirect(
-                reverse('users.views.user_login', args=[])
+                reverse('users:user_login', args=[])
             )
 
     return render(
@@ -106,8 +106,8 @@ def user_logout(request):
 def user_register(request):
     if request.user.is_authenticated():
         return redirect(
-            reverse("courses.views.index", args=[]))
-
+            reverse("courses:courses_index", args=[])
+        )
 
     if request.method == "POST":
         register_form = UserRegisterForm(data=request.POST)
@@ -126,7 +126,7 @@ def user_register(request):
                 'Register successful!You need to sign in, Now!'
             )
             return redirect(
-                reverse('users.views.user_login', args=[])
+                reverse('users:user_login', args=[])
             )
         else:
             return render(

@@ -44,12 +44,12 @@
                 <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
                     继续
                 </div>
+            </a>
     <a href="{% url 'users:user_profile' user.id %}">Profile</a> |
     <a href="{% url 'courses:courses_index' %}">Courses</a> |
     <a href="{% url 'users:user_logout' %}">Logout</a> |
 
     <div style="border:2px solid red">
-        {% if user_recored %}
             <a href="{% url 'labs:labs_index' user_recored.course.id user_recored.lab.weight %}">
                 <p>course: {{ user_recored.course.name }}</p>
             </a>
