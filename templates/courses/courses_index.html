@@ -15,9 +15,9 @@
     <div class="am-text-center">
         Learn core programming concepts and syntax for the world's most popular languages.
     </div>
-    {% for course in courses  %}
     <div class="courses">
         <div class="am-g">
+    {% for course in courses  %}
         {% if user.is_authenticated %}
             <a href="{% url 'labs:show_labs' course.id %}">
         {% else %}
@@ -37,8 +37,10 @@
                     </div>
                 </div>
             </a>
-    </div>
     {% endfor %}
+        
+        
+    </div>
 
     {% for course in courses  %}
         {% if course.is_active %}

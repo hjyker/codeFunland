@@ -8,7 +8,6 @@
         </div>
         <div class="am-modal-bd">
             <div class="am-g">
-
                 <form class="am-form" action="{% url login_action %}" method="{{ methods }}">
                     {% csrf_token %}
                     <div class="am-u-sm-6">
@@ -16,28 +15,27 @@
                             {% for field in login_form %}
                                 {% if field|fieldtype == "TextInput" %}
                                     <div class="am-input-group">
-                                        {{ login_form.username|addattrs:"class=am-form-field,placeholder=Username" }}
+                                        {{ login_form.username|addattrs:"placeholder=Username" }}
                                         {{ field.errors }}
-                                        <!-- <input type="text" class="am-form-field" placeholder="Email or username"> -->
                                     </div>
                                 {% elif field|fieldtype == "PasswordInput" %}
                                     <div class="am-input-group">
-                                        {{ login_form.password|addattrs:"class=am-form-field,placeholder=Password" }}
+                                        {{ login_form.password|addattrs:"placeholder=Password" }}
                                         {{ field.errors }}
-                                        <!-- <input type="text" class="am-form-field" placeholder="Password"> -->
                                     </div>
                                 {% elif field|fieldtype == "CheckboxInput" %}
                                     <div class="am-g input-group">
-                                        <div class="am-u-sm-2">
-                                            {{ login_form.remember_me|addattrs:"class=am-form-field" }}
+                                        <div class="am-u-sm-1">
+                                            {{ field|addattrs:"class=am-checkbox" }}
                                             {{ field.errors }}
-                                            <!-- <input type="checkbox" class="am-form-field"> -->
                                         </div>
-                                        <div class="am-u-sm-10">Remember me</div>
+                                        <div class="am-u-sm-5">自动登录</div>
+                                        <div class="am-u-sm-5 am-text-center">
+                                            <a href="#">忘记密码</a>
+                                        </div>
                                     </div>
                                 {% endif %}
                             {% endfor %}
-                            <!-- <div class="am-btn am-btn-danger am-center btn login-btn">登录</div> -->
                             <input type="submit" class="am-btn am-btn-danger am-center btn login_btn" value="登陆"/>
                         </div>
                     </div>
@@ -53,34 +51,28 @@
                                     <div class="am-input-group">
                                         {{ register_form.username|addattrs:"class=am-form-field,placeholder=Username" }}
                                         {{ field.errors }}
-                                        <!-- <input type="text" class="am-form-field" placeholder="Username"> -->
                                     </div>
                                 {% elif field|fieldtype == "EmailInput" %}
                                     <div class="am-input-group">
                                         {{ register_form.email|addattrs:"class=am-form-field,placeholder=Email" }}
                                         {{ field.errors }}
-                                        <!-- <input type="text" class="am-form-field" placeholder="Email"> -->
                                     </div>
                                 {% elif field|fieldtype == "PasswordInput" %}
                                     <div class="am-input-group">
                                         {{ register_form.password|addattrs:"class=am-form-field,placeholder=Password" }}
                                         {{ field.errors }}
-                                        <!-- <input type="text" class="am-form-field" placeholder="Password"> -->
                                     </div>
                                 {% elif field|fieldtype == "CheckboxInput" %}
                                     <div class="am-input-group">
                                         {{ register_form.password2|addattrs:"class=am-form-field,placeholder=Repeat Password" }}
                                         {{ field.errors }}
-                                        <!-- <input type="text" class="am-form-field" placeholder="Repeat Password"> -->
                                     </div>
                                 {% endif %}
                             {% endfor %}
-                            <!-- <div class="am-btn am-btn-danger am-center btn btn-register">注册</div> -->
                             <input type="submit" class="am-btn am-btn-danger am-center btn btn-register" value="注册"/>
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
     </div>
