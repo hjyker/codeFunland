@@ -1,14 +1,13 @@
 $(window).load(function(){
-    var jcrop_api;
-    var $preview = $('#preview_box');
+    var jcrop_api = null;
+    var $per_box = $('#preview_box');
     var $tar_img = $('#target'),
         img_w = null,
         img_h = null,
     end;
     
-    $("#id_avatar_link").change(handleFileSelect);
-    
-    initImg();
+    $('#id_avatar_link').change(handleFileSelect);
+    //initImg();
 
     //初始化大预览图的大小
     function initImg(){
@@ -43,7 +42,7 @@ $(window).load(function(){
         },function(){
             var bounds = this.getBounds();
             jcrop_api = this;
-            $preview.appendTo(jcrop_api.ui.holder);
+            $per_box.appendTo(jcrop_api.ui.holder);
         });
         
         //重置preview里的图片
@@ -80,7 +79,9 @@ $(window).load(function(){
     
     //input=file按钮响应执行方法
     function handleFileSelect(evt) {
-        jcrop_api.destroy();
+        if (jcrop_api !== null){
+            jcrop_api.destroy();
+        }
 
         //重置target里图片的width/height
         $tar_img.css({

@@ -2,10 +2,6 @@
 
 {% load static %}
 
-{% block js %}
-<script type="text/javascript" src="{% static 'js/labs/show_labs.js' %}"></script>
-{% endblock %}
-
 {% block style %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/labs/show_labs.css' %}">
 {% endblock %}
@@ -13,109 +9,99 @@
 {% block title %}Labs{% endblock %}
 
 {% block body %}
-    <div class="contents">
-        <div class="course-content">
-        {% if user_record_latest %}
-            <!-- 学习过课程 -->
-            <div class="am-text-center course-name">
-                {{ user_record_latest.course.name }}
-            </div>
-            <div class="am-text-center lab-direction">
-                Learn the fundamentals of JavaScript, the programming language of the Web.
-            </div>
-            <div class="am-g am-g-fixed">
-                <div class="am-u-md-11">
-                    <div class="am-progress am-progress-sm">
-                        <div class="am-progress-bar am-progress-bar-secondary"></div>
-                    </div>
-                </div>
-                <div class="am-u-md-1 am-text-center progress-num">57%</div>
-            </div>
-            <div class="am-g am-g-fixed">
-                <div class="am-text-center lab-name">
-                    labName：{{ user_record_latest.lab.name }}
-                </div>
-                <div class="am-text-center created_time">
-                    latestTiem/createdTime：{{ user_record_latest.created_time | date:"Y-m-d" }}
-                </div>
-                <a href="{% url 'labs:edit_code' user_record_latest.course.id user_record_latest.lab.weight %}">
-                    <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
-                        继续
-                    </div>
-                </a>
-            </div>
-        {% else %}
-            <!-- 未学习过课程 -->
-            <div class="am-text-center course-name">
-                {{ course.name }}
-            </div>
-            <div class="am-text-center lab-direction">
-                Learn the fundamentals of JavaScript, the programming language of the Web.
-            </div>
-            <div class="am-g am-g-fixed">
-                <div class="am-u-md-11">
-                    <div class="am-progress am-progress-sm">
-                        <div class="am-progress-bar am-progress-bar-secondary"></div>
-                    </div>
-                </div>
-                <div class="am-u-md-1 am-text-center progress-num">10%</div>
-            </div>
-            <div class="am-g am-g-fixed">
-                <div class="am-text-center lab-name">
-                    labName：{{ user_record.lab.name }}
-                </div>
-                <div class="am-text-center created_time">
-                    latestTiem/createdTime：{{ user_record.created_time | date:"Y-m-d" }}
-                </div>
-                <a href="{% url 'labs:edit_code' course.id 1 %}">
-                    <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
-                        开始
-                    </div>
-                </a>
-            </div>
-        {% endif %}
+<div class="contents">
+    <div class="course-content">
+    {% if user_record_latest %}
+        <!-- 学习过课程 -->
+        <div class="am-text-center course-name">
+            {{ user_record_latest.course.name }}
         </div>
-        <div class="labs-content">
-        {% for lab in course.labs_set.all %}
-            {% if lab.id in labs_id %}
-            <div class="am-g">
+        <div class="am-g am-g-fixed">
+            <div class="am-u-md-11">
+                <div class="am-progress am-progress-sm">
+                    <div class="am-progress-bar am-progress-bar-secondary" style="width: {{ user_finished_labs_per }}%;"></div>
+                </div>
+            </div>
+            <div class="am-u-md-1 am-text-center progress-num">{{ user_finished_labs_per }}%</div>
+        </div>
+        <div class="am-g am-g-fixed">
+            <div class="am-text-center lab-name">
+                {{ user_record_latest.lab.name }}
+            </div>
+            <a href="{% url 'labs:edit_code' user_record_latest.course.id user_record_latest.lab.weight %}">
+                <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
+                    继续
+                </div>
+            </a>
+        </div>
+    {% else %}
+        <!-- 未学习过课程 -->
+        <div class="am-text-center course-name">
+            {{ course.name }}
+        </div>
+        <div class="am-g am-g-fixed">
+            <div class="am-u-md-11">
+                <div class="am-progress am-progress-sm">
+                    <div class="am-progress-bar am-progress-bar-secondary" style="width: {{ user_finished_labs_per }}%;"></div>
+                </div>
+            </div>
+            <div class="am-u-md-1 am-text-center progress-num">{{ user_finished_labs_per }}%</div>
+        </div>
+        <div class="am-g am-g-fixed">
+            {% if not course.labs_set.count %}
+                <button class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-default" disabled="disabled">
+                    还没有添加实验
+                </button>
+            {% else %}
+            <a href="{% url 'labs:edit_code' course.id 1 %}">
+                <div class="am-u-sm-offset-4 am-u-sm-4 am-btn am-btn-secondary btn">
+                    开始
+                </div>
+            </a>
+            {% endif %}
+        </div>
+    {% endif %}
+    </div>
+    <div class="labs-content">
+    {% for lab in course.labs_set.all %}
+        {% if lab.id in labs_id %}
+        <div class="am-g">
+            <a href="{% url 'labs:edit_code' course.id lab.weight %}">
                 <div class="am-u-md-6 am-u-md-offset-3 complete">
                     <div class="am-g">
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-check-circle"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
-                            {{ forloop.counter }} <a href="{% url 'labs:edit_code' course.id lab.weight %}">{{ lab }}</a>
+                            {{ lab }}
                         </div>
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% else %}
-            <div class="am-g">
+            </a>
+        </div>
+        {% else %}
+        <div class="am-g">
+            <a href="{% url 'labs:edit_code' course.id lab.weight %}">
                 <div class="am-u-md-6 am-u-md-offset-3 uncomplete">
                     <div class="am-g">
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-tag"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
-                            {{ forloop.counter }} <a href="{% url 'labs:edit_code' course.id lab.weight %}">{{ lab }}</a>
+                            {{ lab }}
                         </div>
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-            {% endif %}
-        {% endfor %}
+            </a>
         </div>
+        {% endif %}
+    {% endfor %}
     </div>
-{% if not course.labs_set.count %}
-    还没有添加实验
-{% endif %}
-
-{{ user_finished_labs_per }}
+</div>
 {% endblock %}

@@ -11,9 +11,11 @@
 
 {% block body %}
 <div class="contents">
-    <h1 class="am-text-center">Language Skills</h1>
+    <h1 class="am-text-center">
+        语言技能
+    </h1>
     <div class="am-text-center">
-        Learn core programming concepts and syntax for the world's most popular languages.
+        了解核心编程概念和世界上最流行语言的语法
     </div>
     <div class="courses">
         <div class="am-g">
@@ -32,7 +34,7 @@
                             {{ course.name }}
                         </div>
                         <div class="am-text-center course-direction">
-                            Learn the fundamentals of JavaScript, the programming language of the Web.
+                            {{ course.description }}
                         </div>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
         
     </div>
 
-    {% for course in courses  %}
+    <!-- {% for course in courses  %}
         {% if course.is_active %}
             <a href="{% url 'labs:show_labs' course.id %}">
                 <p>课程名称：{{ course.name }}</p>
@@ -58,63 +60,10 @@
         <p>课程拥有者：{{ course.owner.username }}</p>
         <img src="{% get_media_prefix %}{{ course.image }}" style="width:160px;height:80px;" />
         <hr />
-    {% endfor %}
+    {% endfor %} -->
 
     <!-- login register modal -->
     {% dialog_form %}
-    <!-- <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">
-                已有账户请登录，没有账户请先注册
-                <a href="javascript: void(0)" class="am-close" data-am-modal-close>&times;</a>
-            </div>
-            <div class="am-modal-bd">
-                <div class="am-g">
-                    <div class="am-u-sm-6">
-                        <div class="login-form">
-                            <div class="am-input-group">
-                                <input type="text" placeholder="Email or username">
-                            </div>
-                            <div class="am-input-group">
-                                <input type="text" placeholder="Password">
-                            </div>
-                            <div class="am-g input-group">
-                                <div class="am-u-sm-1">
-                                    <input type="checkbox" name="remember_me" id="id_remember_me" class="am-checkbox">
-                                </div>
-                                <div class="am-u-sm-5">自动登录</div>
-                                <div class="am-u-sm-5 am-text-center">
-                                    <a href="#">忘记密码</a>
-                                </div>
-                            </div>
-                            <div class="submit-btns input-group">
-                                <input type="submit" value="登录" class="am-btn am-btn-danger am-center btn">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="am-u-sm-6" style="border-left: 1px solid #ccc;">
-                        <div class="register-form">
-                            <div class="am-input-group">
-                                <input type="text" placeholder="Email">
-                            </div>
-                            <div class="am-input-group">
-                                <input type="text" placeholder="Username">
-                            </div>
-                            <div class="am-input-group">
-                                <input type="text" placeholder="Password">
-                            </div>
-                            <div class="am-input-group">
-                                <input type="text" placeholder="Password">
-                            </div>
-                            <div class="submit-btns input-group">
-                                <input type="submit" value="注册" class="am-btn am-btn-danger am-center btn">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
 </div>
 {% endblock %}

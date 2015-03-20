@@ -1,3 +1,4 @@
+/* course */
 .course-content {
 	padding-bottom: 20px;
     background-color: #fff;
@@ -19,6 +20,12 @@
 	color: #0e90d2;
 	font-size: 20px;
 }
+.lab-name {
+    font-size: 20px;
+}
+/* end course */
+
+/* labs */
 .labs-content {
     background-color: #c1c1c1;
     padding: 0 10px 10px;
@@ -47,3 +54,4 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+/* end labs */

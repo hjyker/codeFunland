@@ -6,17 +6,17 @@
     {% for field in form %}
         {% if field|fieldtype == "TextInput" %}
             <div class="am-input-group">
-                {{ field|addattrs:"placeholder=Username" }}
+                {{ field|addattrs:"placeholder=用户名" }}
                 {{ field.errors }}
             </div>
         {% elif field|fieldtype == "EmailInput" %}
             <div class="am-input-group">
-                {{ field|addattrs:"placeholder=Email" }}
+                {{ field|addattrs:"placeholder=邮箱" }}
                 {{ field.errors }}
             </div>
         {% elif field|fieldtype == "PasswordInput" %}
             <div class="am-input-group">
-                 {{ field|addattrs:"placeholder=Password" }}
+                 {{ field|addattrs:"placeholder=6~12位密码" }}
                  {{ field.errors }}
             </div>
         {% elif field|fieldtype == "CheckboxInput" %}

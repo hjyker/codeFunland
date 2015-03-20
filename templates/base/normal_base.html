@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/amazeui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common.js' %}"></script>
     <link type="text/css" rel="stylesheet" href="{% static 'css/amazeui.min.css' %}">
     <link type="text/css" rel="stylesheet" href="{% static 'css/common.css' %}">
     {% block static_src %}{% endblock %}
@@ -28,9 +29,10 @@
     {% if user.is_authenticated %}
         <div class="am-topbar-right">
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
+                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle my-dropdown" data-am-dropdown-toggle>
                     <div class="haeder-user-name">
-                        {{ user.username }}&nbsp;
+                        <img class="header-img" src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}" alt="{{ user.username }}"/>
+                        &nbsp;
                     </div>
                     <span class="am-icon-caret-down"></span>
                 </button>
@@ -41,11 +43,6 @@
             </div>
         </div>
 
-        <div class="am-topbar-right">
-            <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 600, height: 350}">
-                Modal
-            </button>
-        </div>
     {% else %}
         <div class="am-topbar-right">
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
@@ -69,20 +66,32 @@
     {% endif %}
     </div>
 </header>
+{% block messages %}
+    {% if messages %}
+    <div class="am-g al-message">
+        <div class="am-u-md-6 am-u-md-centered">
+        {% for message in messages %}
+            {% if message.level == 25 %}
+            <div class="am-alert am-alert-success">
+            {% elif message.level == 30 %}
+            <div class="am-alert am-alert-warning">
+            {% elif message.level == 40 %}
+            <div class="am-alert am-alert-danger">
+            {% else %}
+            <div class="am-alert">
+            {% endif %}
+                <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                    {{ message.level }} -- {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}
 
 {% block body %}{% endblock %}
 
-{% block messages %}
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
-            {{ message.level }} -- {{ message }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-{% endblock %}
 </body>
 
 {% block js %}{% endblock %}

@@ -15,12 +15,12 @@
                             {% for field in login_form %}
                                 {% if field|fieldtype == "TextInput" %}
                                     <div class="am-input-group">
-                                        {{ login_form.username|addattrs:"placeholder=Username" }}
+                                        {{ login_form.username|addattrs:"placeholder=用户名" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "PasswordInput" %}
                                     <div class="am-input-group">
-                                        {{ login_form.password|addattrs:"placeholder=Password" }}
+                                        {{ login_form.password|addattrs:"placeholder=6~12位密码" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "CheckboxInput" %}
@@ -36,7 +36,7 @@
                                     </div>
                                 {% endif %}
                             {% endfor %}
-                            <input type="submit" class="am-btn am-btn-danger am-center btn login_btn" value="登陆"/>
+                            <input type="submit" class="am-btn am-btn-danger am-center btn login_btn" value="登录"/>
                         </div>
                     </div>
                 </form>
@@ -49,22 +49,22 @@
                             {% for field in register_form %}
                                 {% if field|fieldtype == "TextInput" %}
                                     <div class="am-input-group">
-                                        {{ register_form.username|addattrs:"class=am-form-field,placeholder=Username" }}
+                                        {{ register_form.username|addattrs:"placeholder=用户名" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "EmailInput" %}
                                     <div class="am-input-group">
-                                        {{ register_form.email|addattrs:"class=am-form-field,placeholder=Email" }}
+                                        {{ register_form.email|addattrs:"placeholder=邮箱" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "PasswordInput" %}
                                     <div class="am-input-group">
-                                        {{ register_form.password|addattrs:"class=am-form-field,placeholder=Password" }}
+                                        {{ register_form.password|addattrs:"placeholder=6~12位密码" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "CheckboxInput" %}
                                     <div class="am-input-group">
-                                        {{ register_form.password2|addattrs:"class=am-form-field,placeholder=Repeat Password" }}
+                                        {{ register_form.password2|addattrs:"placeholder=Repeat Password" }}
                                         {{ field.errors }}
                                     </div>
                                 {% endif %}
