@@ -161,7 +161,6 @@ def user_profile(request, user_id):
     )
 
 
-@require_http_methods(["POST"])
 @login_required
 def update_avatar(request, user_id):
     current_user = request.user
