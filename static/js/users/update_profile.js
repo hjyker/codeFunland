@@ -57,8 +57,6 @@ $(window).load(function(){
             var ry = $("#preview_box").height() / coords.h;
             //通过比例值控制图片的样式与显示
             
-            console.log($("#target").width(),$("#target").height());
-            
             $("#crop_preview").css({
                 //预览图片宽度为计算比例值与原图片宽度的乘积
                 width:Math.round(rx * $("#target").width()) + "px",

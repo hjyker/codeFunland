@@ -37,8 +37,9 @@ input[type="submit"] {
     position: absolute;
     top: 0;    
     left: 520px;
-    display: block;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #a7a7a7;
 }
