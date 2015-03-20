@@ -1,4 +1,4 @@
-$(function(){
+$(window).load(function(){
     var jcrop_api;
     var $preview = $('#preview_box');
     var $tar_img = $('#target'),
@@ -12,9 +12,8 @@ $(function(){
 
     //初始化大预览图的大小
     function initImg(){
-        img_w = $tar_img.width(),
-        img_h = $tar_img.height(),
-        console.log(img_w,img_h);
+        img_w = $tar_img.width();
+        img_h = $tar_img.height();
         //控制预览图的大小
         if(img_w > 400 || img_h > 400){
             if(img_w > img_h){
@@ -82,7 +81,7 @@ $(function(){
     //input=file按钮响应执行方法
     function handleFileSelect(evt) {
         jcrop_api.destroy();
-        
+
         //重置target里图片的width/height
         $tar_img.css({
             'width':'auto',
