@@ -13,7 +13,7 @@ from django.http import (HttpResponse, HttpResponseNotFound)
 from users.models import (UserDockers, UserCode)
 from courses.models import (LearnRecord, Courses)
 from labs.models import Labs
-from labs.utils import (
+from .utils import (
     docker_ps, docker_init_container_ports, docker_port
 )
 from labs.forms import UserCodeForm
@@ -34,7 +34,7 @@ def show_labs(request, course_id):
     )
     learn_records = course.learnrecord_set.filter(
         user=current_user
-    ).order_by("-created_time")
+    )
 
     labs_id = [learn_record.lab.id for learn_record in learn_records]
 
@@ -64,13 +64,13 @@ def edit_code(request, course_id, lab_weight):
             "Sorry, There is not any lab about this course."
         )
         return redirect(
-            reverse("courses.views.index", args=[])
+            reverse("courses:courses_index", args=[])
         )
 
     # It's not accurate that below logic, need rebuild
     if lab_weight > labs.count():
         return redirect(
-            reverse("courses.views.index", args=[])
+            reverse("courses:courses_index", args=[])
         )
     ##################################################
 
@@ -78,12 +78,10 @@ def edit_code(request, course_id, lab_weight):
 
     user_code = current_user.usercode_set.filter(
         lab=lab
-        ).order_by(
-            '-created_time'
         ).first()
 
     # Get docker container for current user.
-    user_docker = current_user.userdockers_set.order_by("-created_time").first()
+    user_docker = current_user.userdockers_set.first()
 
     # Get docker container's record that currnet user used.
     create_container = False
@@ -155,7 +153,7 @@ def save_user_code(request):
                 ).first()
 
             # save learn record for current user
-            learn_record = LearnRecord.objects.create(
+            LearnRecord.objects.create(
                 user=current_user,
                 course=course,
                 lab=lab
@@ -184,7 +182,7 @@ def save_user_code(request):
             # )
             return HttpResponse(
                 reverse(
-                    'labs.views.lab_index',
+                    'labs:edit_code',
                     args=[int(course.id), int(lab.weight)+1]
                 )
             )

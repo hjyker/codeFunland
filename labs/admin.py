@@ -8,8 +8,8 @@ from labs.models import Labs
 
 class LabsAdmin(admin.ModelAdmin):
     list_display = (
-        'id', 'name', 'description', 'docker_image',
-        'views', 'document_link', 'created_time', 'course'
+        'id', 'name', 'description', 'views',
+        'created_time', 'course'
     )
 
 

@@ -38,12 +38,15 @@ class UserRegisterForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get("email", "")
-        email_exist = User.objects.filter(email=email).exists()
+        if not email:
+            error_msg = u"email不能为空"
+            raise ValidationError(error_msg)
 
+        email_exist = User.objects.filter(email=email).exists()
         if email_exist:
-            tips_msg = u"email已存在"
+            error_msg = u"email已存在"
             # self._errors["email"] = ErrorList([tips_msg])
-            raise ValidationError(tips_msg)
+            raise ValidationError(error_msg)
         return email
 
     def clean_password2(self):
@@ -51,9 +54,9 @@ class UserRegisterForm(forms.ModelForm):
         password2 = self.cleaned_data.get("password2", "").strip()
 
         if password and password2 and password != password2:
-            tips_msg = u"两次密码不一致"
+            error_msg = u"两次密码不一致"
             # self._errors['password'] = ErrorList([tips_msg])
-            raise ValidationError(tips_msg)
+            raise ValidationError(error_msg)
         return password2
 
 

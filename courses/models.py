@@ -80,6 +80,9 @@ class Courses(models.Model):
                 # }
             # )
 
+    class Meta:
+        ordering = ["-created_time"]
+
 
 class UsersCourses(models.Model):
     user = models.ForeignKey(User)
@@ -93,6 +96,9 @@ class UsersCourses(models.Model):
         default=timezone.now
     )
 
+    class Meta:
+        ordering = ["-created_time"]
+
 
 class LearnRecord(models.Model):
     user = models.ForeignKey(User)
@@ -102,3 +108,6 @@ class LearnRecord(models.Model):
     created_time = models.DateTimeField(
         default=timezone.now
     )
+
+    class Meta:
+        ordering = ["-created_time"]

@@ -8,12 +8,12 @@ from django.utils import timezone
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
-    docker_image = models.CharField(
-        max_length=100,
-        blank=True,
-        null=True,
-        verbose_name=u"docker容器ID(长)"
-    )
+    # docker_image = models.CharField(
+        # max_length=100,
+        # blank=True,
+        # null=True,
+        # verbose_name=u"docker容器ID(长)"
+    # )
 
     avatar_link = models.ImageField(
         default="avatar/1.jpg",
@@ -49,6 +49,7 @@ class UserCode(models.Model):
 
     class Meta:
         get_latest_by = "created_time"
+        ordering = ["-created_time"]
 
 
 class UserDockers(models.Model):
@@ -66,3 +67,4 @@ class UserDockers(models.Model):
 
     class Meta:
         get_latest_by = "created_time"
+        ordering = ["-created_time"]
