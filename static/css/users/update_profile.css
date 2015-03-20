@@ -1,3 +1,20 @@
+.rel {
+    position: relative;
+    width: 810px;
+    margin: 0 auto;
+}
+.crop_preview {
+    height: 120px;
+    left: 520px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 120px;
+    border: 1px solid #000;
+}
+img#crop_preview {
+    max-width: none;
+}
 .form-avatar {
     width: 40%;
     float: left;
