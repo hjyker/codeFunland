@@ -151,13 +151,13 @@
             },
             function(data, status){
                 if (!data) {
-                    $(".console").html("Your input seems some errors!");
+                    $(".console-content").html("Your input seems some errors!");
                 } else {
                     data = data.replace(/>/ig, "&gt;").replace(/</ig, "&lt;").replace(/ /ig, "&nbsp;").replace(/\n/ig, '<br />');
-                    $(".console").html("<p>" + status + "</p>" + data);
+                    $(".console-content").html("<p>" + status + "</p>" + data);
                 }
         }).error(function () {
-            $(".console").html("Server wrong");
+            $(".console-content").html("Server wrong");
         });
     });
 

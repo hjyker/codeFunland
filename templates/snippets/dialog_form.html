@@ -62,11 +62,6 @@
                                         {{ register_form.password|addattrs:"placeholder=6~12位密码" }}
                                         {{ field.errors }}
                                     </div>
-                                {% elif field|fieldtype == "CheckboxInput" %}
-                                    <div class="am-input-group">
-                                        {{ register_form.password2|addattrs:"placeholder=Repeat Password" }}
-                                        {{ field.errors }}
-                                    </div>
                                 {% endif %}
                             {% endfor %}
                             <input type="submit" class="am-btn am-btn-danger am-center btn btn-register" value="注册"/>

@@ -29,8 +29,8 @@ $(window).load(function(){
         });
         initJcrop();
         
-        $('.width input').val($tar_img.width());
-        $('.height input').val($tar_img.height());
+        $('#id_width').val($tar_img.width());
+        $('#id_height').val($tar_img.height());
     };
     
     //初始化jcrop插件
@@ -66,10 +66,10 @@ $(window).load(function(){
                 marginTop:"-" + Math.round(ry * coords.y) + "px"
             });
             //打印选取框坐标点
-            $('.x1 input').val(coords.x);
-            $('.y1 input').val(coords.y);
-            $('.x2 input').val(coords.x2);
-            $('.y2 input').val(coords.y2);
+            $('#id_x1').val(coords.x);
+            $('#id_y1').val(coords.y);
+            $('#id_x2').val(coords.x2);
+            $('#id_y2').val(coords.y2);
            
         }
         
