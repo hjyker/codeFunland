@@ -27,10 +27,10 @@ $(window).load(function(){
             'width':img_w,
             'height':img_h
         });
-        initJcrop();
-        
         $('#id_width').val($tar_img.width());
         $('#id_height').val($tar_img.height());
+        
+        initJcrop();
     };
     
     //初始化jcrop插件
@@ -70,9 +70,7 @@ $(window).load(function(){
             $('#id_y1').val(coords.y);
             $('#id_x2').val(coords.x2);
             $('#id_y2').val(coords.y2);
-           
         }
-        
     };
     
     //input=file按钮响应执行方法
@@ -81,11 +79,6 @@ $(window).load(function(){
             jcrop_api.destroy();
         }
 
-        //重置target里图片的width/height
-        $tar_img.css({
-            'width':'auto',
-            'height':'auto'
-        });
         
         var files = evt.target.files;
         for (var i = 0, f; f = files[i]; i++) {
@@ -97,7 +90,11 @@ $(window).load(function(){
             var reader = new FileReader();
             reader.onload = (function(theFile) {
                 return function(e) {
-                    $tar_img.attr('src', e.target.result);
+                    $tar_img.attr('src', e.target.result).css({
+                        'width':'auto',
+                        'height':'auto'
+                    });
+                    
                     initImg();
                 };
             })(f);
