@@ -99,7 +99,7 @@ def user_logout(request):
         'You have been logout.'
     )
     return redirect(
-        reverse('start.views.index', args=[])
+            reverse('start:start_index', args=[])
     )
 
 
