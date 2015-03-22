@@ -155,7 +155,7 @@
                     Learn to code interactively, for free.<br/>
                     --> <span>~$</span>
                 </div>
-            </div>	
+            </div>
         </div>
         <div class="am-u-md-5">
             <div class="login-register am-u-sm-centered">
@@ -174,22 +174,10 @@
                         <input type="text" class="am-form-field" placeholder="Password">
                     </div>
                     <div class="am-btn am-btn-danger am-center btn btn-register">注册</div> -->
-                    {% form_extra register_form "user_register" %}
+                    {% form_extra register_form "users:user_register" "注册" %}
                 </div>
                 <div class="form-login">
-                    <div class="am-input-group">
-                        <input type="text" class="am-form-field" placeholder="Email or username">
-                    </div>
-                    <div class="am-input-group">
-                        <input type="text" class="am-form-field" placeholder="Password">
-                    </div>
-                    <div class="am-g input-group">
-                        <div class="am-u-sm-2">
-                            <input type="checkbox" class="am-form-field">
-                        </div>
-                        <div class="am-u-sm-10">Remember me</div>
-                    </div>
-                    <div class="am-btn am-btn-danger am-center btn login-btn">登录</div>
+                    {% form_extra login_form "users:user_login" "登陆" %}
                 </div>
             </div>
         </div>
