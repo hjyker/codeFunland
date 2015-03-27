@@ -1,8 +1,7 @@
-.contents {
-	margin: 0;
+.course-content {
 	padding-bottom: 20px;
-	box-shadow: 0 0 1px #ccc; 
-	background-color: #fff;
+    background-color: #fff;
+	box-shadow: 0 0 1px #ccc;
 }
 .course-name {
 	font-size: 40px;
@@ -14,9 +13,37 @@
 	margin: 12px 0 0;
 }
 .am-progress-bar {
-	width: 57%;
+	width: 0%;
 }
 .progress-num {
 	color: #0e90d2;
 	font-size: 20px;
+}
+.labs-content {
+    background-color: #c1c1c1;
+    padding: 0 10px 10px;
+}
+.complete {
+    color: #fff;   
+    background-color: #3bb4f2;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.uncomplete {
+    background-color: #fff;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.uncomplete:hover {
+    color: #fff;
+    background-color: #3bb4f2;
+}
+.com-lab-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

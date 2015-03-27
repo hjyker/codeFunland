@@ -26,10 +26,7 @@
 
     <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse">
     {% if user.is_authenticated %}
-        <div class="am-topbar-right"> |
-            <a href="{% url 'users:user_profile' user.id %}">Profile</a> |
-            <a href="{% url 'courses:courses_index' %}">Courses</a> |
-            <a href="{% url 'users:user_logout' %}">Logout</a>
+        <div class="am-topbar-right">
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
                 <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
                     <div class="haeder-user-name">
@@ -57,7 +54,7 @@
                 </button>
                 <ul class="am-dropdown-content">
                     <li><a href="{% url 'users:user_register' %}">注册</a></li>
-                    <li><a href="#">随便看看</a></li>
+                    <li><a href="{% url 'courses:courses_index' %}">随便看看</a></li>
                 </ul>
             </div>
         </div>
@@ -68,12 +65,6 @@
                     登录
                 </button>
             </a>
-        </div>
-
-        <div class="am-topbar-right">
-            <button class="am-btn am-btn-primary am-topbar-btn am-btn-sm" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 600, height: 350}">
-                Modal
-            </button>
         </div>
     {% endif %}
     </div>

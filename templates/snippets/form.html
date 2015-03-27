@@ -25,9 +25,12 @@
                     {{ field|addattrs:"class=am-form-field" }}
                     {{ field.errors }}
                 </div>
-                <div class="am-u-sm-10">Remember me</div>
+                <div class="am-u-sm-10">自动登录</div>
+                忘记密码
             </div>
         {% endif %}
     {% endfor %}
-    <input type="submit" class="am-btn am-btn-danger am-center btn btn-register submit-btn" value="{{ submit_value }}"/>
+    <div class="submit-btns input-group">
+        <input type="submit" class="am-btn am-btn-danger am-center btn" value="{{ submit_value }}"/>
+    </div>
 </form>

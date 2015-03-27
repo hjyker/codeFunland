@@ -5,7 +5,7 @@
 {% load static %}
 
 {% block style %}
-<link rel="stylesheet" href="{% static 'css/users/profile.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/users/profile.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,10 @@
             <img src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}"/>
         </div>
         <div>
-            <a href="{% url 'users:update_avatar' user.id %}">Update Your Avatar?</a>
+            <!-- <a href="{% url 'users:update_avatar' user.id %}">Update Your Avatar?</a> -->
+            <button class="am-btn am-btn-primary" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}">
+                Update Your Avatar?
+            </button>
         </div>
         <div class="user-name">
             {{ user.username }}
@@ -25,6 +28,21 @@
         </div>
     </div>
 </div>
-
-<a href="{% url 'users:update_avatar' user.id %}">Update Your Avatar?</a>
+<!-- 选择头像 modal -->
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">选择头像文件
+            <a href="javascript: void(0)" class="am-close" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd">
+            <form action="{% url 'users:update_avatar' user.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if form %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit" />
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
