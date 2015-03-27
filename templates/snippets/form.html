@@ -21,12 +21,14 @@
             </div>
         {% elif field|fieldtype == "CheckboxInput" %}
             <div class="am-g input-group">
-                <div class="am-u-sm-2">
+                <div class="am-u-sm-1">
                     {{ field|addattrs:"class=am-form-field" }}
                     {{ field.errors }}
                 </div>
-                <div class="am-u-sm-10">自动登录</div>
-                忘记密码
+                <div class="am-u-sm-5">自动登录</div>
+                <div class="am-u-sm-5 am-text-center">
+                    <a href="#">忘记密码</a>
+                </div>
             </div>
         {% endif %}
     {% endfor %}

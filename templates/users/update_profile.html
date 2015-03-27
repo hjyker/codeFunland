@@ -15,19 +15,53 @@
 {% endblock %}
 
 {% block body %}
-<img src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}"/>
-<img id="target" src="http://gtms02.alicdn.com/tps/i2/TB1a5ggHXXXXXcSaFXXA.YMHXXX-990-330.jpg">
-<div id="preview-pane">
-    <div class="preview-container">
-        <img src="http://gtms02.alicdn.com/tps/i2/TB1a5ggHXXXXXcSaFXXA.YMHXXX-990-330.jpg" class="jcrop-preview" alt="Preview" />
+<div class="contents">
+    <div class="form-avatar">
+        <form action="{% url 'users:update_avatar' user.id %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if form %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit" />
+            {% endif %}
+        </form>
+    </div>
+    
+    <div class="jcrop">
+        <div class="img-panel">
+            <img id="target" src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}">
+        </div>
+        <div id="preview-pane">
+            <div class="preview-container">
+                <img src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}" class="jcrop-preview" alt="Preview" />
+            </div>
+        </div>
+    </div>
+    
+    <div class="size">
+        <div class="x1">
+            <label>x1:</label>
+            <input type="text">
+        </div>
+        <div class="y1">
+            <label>y1:</label>
+            <input type="text">
+        </div>
+        <div class="width">
+            <label>width:</label>
+            <input type="text">
+        </div>
+        <div class="height">
+            <label>height:</label>
+            <input type="text">
+        </div>
+        <div class="x2">
+            <label>x2:</label>
+            <input type="text">
+        </div>
+        <div class="y2">
+            <label>y2:</label>
+            <input type="text">
+        </div>
     </div>
 </div>
-
-<form action="{% url 'users:update_avatar' user.id %}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% if form %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" />
-    {% endif %}
-</form>
 {% endblock %}
