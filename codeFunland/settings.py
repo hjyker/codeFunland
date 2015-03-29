@@ -8,6 +8,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+from django.core.urlresolvers import reverse_lazy
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -87,7 +89,7 @@ USE_L10N = True
 USE_TZ = False
 
 # If user isn't logged in , redirect to the below address
-LOGIN_URL = "/user/login/"
+LOGIN_URL = reverse_lazy("users:user_login", args=[])
 
 
 # Static files (CSS, JavaScript, Images)

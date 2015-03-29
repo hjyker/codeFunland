@@ -28,3 +28,12 @@ def index(request):
             "login_form": login_form
         }
     )
+
+
+def page_not_found(request):
+    """
+    It's the standard 404 page, when you raise the Http404 exception,
+    It's a auto process whole redirect, you just need to write the
+    handlerXXX into codeFunland/urls.py
+    """
+    return render(request, "others/404.html")
