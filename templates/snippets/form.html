@@ -1,6 +1,6 @@
 {% load custom_filters %}
 
-<form id="login_form" class="am-form" action="{% url action %}" method="{{ methods }}">
+<form class="am-form" action="{% url action %}" method="{{ methods }}">
     {% csrf_token %}
 
     {% for field in form %}

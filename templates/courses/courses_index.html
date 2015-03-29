@@ -1,6 +1,7 @@
 {% extends "base/normal_base.html" %}
 
 {% load static %}
+{% load custom_tags %}
 
 {% block title %}Courses{% endblock %}
 
@@ -38,7 +39,7 @@
             </a>
     </div>
     {% endfor %}
-    
+
     {% for course in courses  %}
         {% if course.is_active %}
             <a href="{% url 'labs:show_labs' course.id %}">
@@ -56,9 +57,10 @@
         <img src="{% get_media_prefix %}{{ course.image }}" style="width:160px;height:80px;" />
         <hr />
     {% endfor %}
-    
+
     <!-- login register modal -->
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+    {% dialog_form %}
+    <!-- <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
         <div class="am-modal-dialog">
             <div class="am-modal-hd">
                 已有账户请登录，没有账户请先注册
@@ -110,6 +112,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
 </div>
 {% endblock %}

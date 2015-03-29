@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
 from django.http import (HttpResponse, HttpResponseNotFound, Http404)
-from django.core.views.decorators import require_http_methods
+from django.views.decorators.http import require_http_methods
 
 from users.models import (UserDockers, UserCode)
 from courses.models import (LearnRecord, Courses)

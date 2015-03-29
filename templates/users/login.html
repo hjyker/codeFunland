@@ -17,14 +17,4 @@
             </div>
         </div>
     </div>
-
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-            {{ message.level }}--{{ message }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
 {% endblock %}
