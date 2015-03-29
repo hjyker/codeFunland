@@ -84,6 +84,11 @@ def user_login(request):
             return redirect(
                 reverse('users:user_login', args=[])
             )
+            # return render(
+                # request,
+                # 'users/login.html',
+                # {'form': form}
+            # )
 
     return render(
         request,

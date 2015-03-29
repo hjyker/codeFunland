@@ -4,6 +4,9 @@
 
 from django import template
 
+from users.forms import (UserLoginForm, UserRegisterForm)
+
+
 register = template.Library()
 
 
@@ -22,4 +25,24 @@ def form_extra(form, action, submit_value, methods="POST"):
         "action": action,
         "submit_value": submit_value,
         "methods": methods,
+    }
+
+
+@register.inclusion_tag("snippets/dialog_form.html")
+def dialog_form(methods="POST"):
+    """
+    It's a dialog that combine Login form and Register form.
+    """
+
+    register_form = UserRegisterForm()
+    login_form = UserLoginForm()
+    register_action = "users:user_register"
+    login_action = "users:user_login"
+
+    return {
+        "register_form": register_form,
+        "login_form": login_form,
+        "login_action": login_action,
+        "register_action": register_action,
+        "methods": methods
     }
