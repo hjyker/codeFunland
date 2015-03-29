@@ -46,8 +46,11 @@ def show_labs(request, course_id):
     )
 
     # Get persent that user finished labs.
-    user_finished_labs = len({}.fromkeys(user_finished_labs).keys())
-    user_finished_labs_per = user_finished_labs / float(learn_records.count())
+    user_finished_labs_per = 0
+    if learn_records.count():
+        user_finished_labs = len({}.fromkeys(user_finished_labs).keys())
+        user_finished_labs_per = user_finished_labs / float(learn_records.count())
+        user_finished_labs_per = int(user_finished_labs_per * 100)
 
     return render(request,
         "labs/show_labs.html",
@@ -55,7 +58,7 @@ def show_labs(request, course_id):
             "course": course,
             "user_record_latest": learn_records.first(),
             "labs_id": labs_id,
-            "user_finished_labs_per": int(user_finished_labs_per * 100),
+            "user_finished_labs_per": user_finished_labs_per,
         }
     )
 

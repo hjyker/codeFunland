@@ -85,7 +85,7 @@
                             <i class="am-icon-check-circle"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
-                            {{ lab }}
+                            {{ forloop.counter }} <a href="{% url 'labs:edit_code' course.id lab.weight %}">{{ lab }}</a>
                         </div>
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
@@ -101,7 +101,7 @@
                             <i class="am-icon-tag"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
-                            {{ lab }}
+                            {{ forloop.counter }} <a href="{% url 'labs:edit_code' course.id lab.weight %}">{{ lab }}</a>
                         </div>
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
