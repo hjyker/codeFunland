@@ -2,13 +2,15 @@
 
 
 import datetime
+import logging
 
 from django.shortcuts import (render, redirect)
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
-from django.http import (HttpResponse, HttpResponseNotFound)
+from django.http import (HttpResponse, HttpResponseNotFound, Http404)
+from django.core.views.decorators import require_http_methods
 
 from users.models import (UserDockers, UserCode)
 from courses.models import (LearnRecord, Courses)
@@ -23,6 +25,8 @@ from courses.constants import COMMAND_PRE
 # It's default 100 hours when development
 EXPIRES_HOURS = 100
 EXPIRES = datetime.timedelta(hours=EXPIRES_HOURS)
+
+logger = logging.getLogger("views_error")
 
 
 @login_required
@@ -136,6 +140,7 @@ def edit_code(request, course_id, lab_weight):
     )
 
 
+@require_http_methods(["POST"])
 @login_required
 def save_user_code(request):
     if request.method == "POST":
@@ -175,6 +180,7 @@ def save_user_code(request):
             )
         except Exception, ex:
             error = ex
+            logger.error(ex)
             return HttpResponse(error)
         else:
             # return redirect(
@@ -187,4 +193,4 @@ def save_user_code(request):
                 )
             )
     else:
-        return HttpResponseNotFound('Wow , woW,<h1>404 NOT FOUND</h1>')
+        return Http404()

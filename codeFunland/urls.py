@@ -27,3 +27,5 @@ if settings.DEBUG:
         'serve',
         {'document_root': settings.MEDIA_ROOT}),
     )
+
+handler404 = "start.views.page_not_found"
