@@ -109,5 +109,8 @@ class LearnRecord(models.Model):
         default=timezone.now
     )
 
+    def __unicode__(self):
+        return "%d" % self.lab.id
+
     class Meta:
         ordering = ["-created_time"]

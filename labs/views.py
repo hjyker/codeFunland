@@ -41,6 +41,13 @@ def show_labs(request, course_id):
     )
 
     labs_id = [learn_record.lab.id for learn_record in learn_records]
+    user_finished_labs = current_user.learnrecord_set.values_list(
+        "lab", flat=True
+    )
+
+    # Get persent that user finished labs.
+    user_finished_labs = len({}.fromkeys(user_finished_labs).keys())
+    user_finished_labs_per = user_finished_labs / float(learn_records.count())
 
     return render(request,
         "labs/show_labs.html",
@@ -48,6 +55,7 @@ def show_labs(request, course_id):
             "course": course,
             "user_record_latest": learn_records.first(),
             "labs_id": labs_id,
+            "user_finished_labs_per": int(user_finished_labs_per * 100),
         }
     )
 
@@ -82,7 +90,7 @@ def edit_code(request, course_id, lab_weight):
 
     user_code = current_user.usercode_set.filter(
         lab=lab
-        ).first()
+    ).first()
 
     # Get docker container for current user.
     user_docker = current_user.userdockers_set.first()
@@ -183,9 +191,6 @@ def save_user_code(request):
             logger.error(ex)
             return HttpResponse(error)
         else:
-            # return redirect(
-                # reverse('labs.views.lab_index', args=[int(course.id), lab_id])
-            # )
             return HttpResponse(
                 reverse(
                     'labs:edit_code',
