@@ -2,6 +2,7 @@
 
 
 import logging
+from PIL import Image
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
