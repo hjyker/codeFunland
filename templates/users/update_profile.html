@@ -21,11 +21,43 @@
             {% csrf_token %}
             {% if form %}
                 {{ form.as_p }}
+                <div class="size">
+                    <div class="x1">
+                        <label>x1:</label>
+                        {{ image_form.x1 }}
+                        <!-- <input type="text"> -->
+                    </div>
+                    <div class="y1">
+                        <label>y1:</label>
+                        {{ image_form.y1 }}
+                        <!-- <input type="text"> -->
+                    </div>
+                    <div class="x2">
+                        <label>x2:</label>
+                        {{ image_form.x2 }}
+                        <!-- <input type="text"> -->
+                    </div>
+                    <div class="y2">
+                        <label>y2:</label>
+                        {{ image_form.y2 }}
+                        <!-- <input type="text"> -->
+                    </div>
+                    <div class="width">
+                        <label>大预览图width:</label>
+                        {{ image_form.width }}
+                        <!-- <input type="text"> -->
+                    </div>
+                    <div class="height">
+                        <label>大预览图height:</label>
+                        {{ image_form.height }}
+                        <!-- <input type="text"> -->
+                    </div>
+                </div>
                 <input type="submit" value="Submit" />
             {% endif %}
         </form>
     </div>
-    
+
     <!-- <div class="jcrop">
         <div class="img-panel">
             <img id="target" src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}">
@@ -41,33 +73,6 @@
         <span id="preview_box" class="crop_preview">
             <img id="crop_preview" src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}" />
         </span>
-    </div>
-    
-    <div class="size">
-        <div class="x1">
-            <label>x1:</label>
-            <input type="text">
-        </div>
-        <div class="y1">
-            <label>y1:</label>
-            <input type="text">
-        </div>
-        <div class="x2">
-            <label>x2:</label>
-            <input type="text">
-        </div>
-        <div class="y2">
-            <label>y2:</label>
-            <input type="text">
-        </div>
-        <div class="width">
-            <label>大预览图width:</label>
-            <input type="text">
-        </div>
-        <div class="height">
-            <label>大预览图height:</label>
-            <input type="text">
-        </div>
     </div>
 </div>
 {% endblock %}
