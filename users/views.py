@@ -2,6 +2,7 @@
 
 
 import logging
+
 from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
@@ -10,6 +11,7 @@ from django.contrib.auth import (
 )
 # from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_http_methods
 from django.contrib import messages
 # from django.core.files import File
 
@@ -82,6 +84,11 @@ def user_login(request):
             return redirect(
                 reverse('users:user_login', args=[])
             )
+            # return render(
+                # request,
+                # 'users/login.html',
+                # {'form': form}
+            # )
 
     return render(
         request,
@@ -154,6 +161,7 @@ def user_profile(request, user_id):
     )
 
 
+@require_http_methods(["POST"])
 @login_required
 def update_avatar(request, user_id):
     current_user = request.user

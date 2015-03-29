@@ -58,7 +58,7 @@
                         <div class="am-progress-bar am-progress-bar-secondary"></div>
                     </div>
                 </div>
-                <div class="am-u-md-1 am-text-center progress-num">0%</div>
+                <div class="am-u-md-1 am-text-center progress-num">10%</div>
             </div>
             <div class="am-g am-g-fixed">
                 <div class="am-text-center lab-name">
@@ -85,7 +85,7 @@
                             <i class="am-icon-check-circle"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
-                            已学过该实验(换成图形化) -- {{ lab }}
+                            {{ forloop.counter }} <a href="{% url 'labs:edit_code' course.id lab.weight %}">{{ lab }}</a>
                         </div>
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
@@ -101,7 +101,7 @@
                             <i class="am-icon-tag"></i>
                         </div>
                         <div class="am-u-sm-8 com-lab-name">
-                            {{ lab }}
+                            {{ forloop.counter }} <a href="{% url 'labs:edit_code' course.id lab.weight %}">{{ lab }}</a>
                         </div>
                         <div class="am-u-sm-2 am-text-center icon">
                             <i class="am-icon-angle-right"></i>
@@ -113,5 +113,9 @@
         {% endfor %}
         </div>
     </div>
+{% if not course.labs_set.count %}
+    还没有添加实验
+{% endif %}
 
+{{ user_finished_labs_per }}
 {% endblock %}

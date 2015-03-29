@@ -2,13 +2,15 @@
 
 
 import datetime
+import logging
 
 from django.shortcuts import (render, redirect)
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
-from django.http import (HttpResponse, HttpResponseNotFound)
+from django.http import (HttpResponse, HttpResponseNotFound, Http404)
+from django.views.decorators.http import require_http_methods
 
 from users.models import (UserDockers, UserCode)
 from courses.models import (LearnRecord, Courses)
@@ -24,6 +26,8 @@ from courses.constants import COMMAND_PRE
 EXPIRES_HOURS = 100
 EXPIRES = datetime.timedelta(hours=EXPIRES_HOURS)
 
+logger = logging.getLogger("views_error")
+
 
 @login_required
 def show_labs(request, course_id):
@@ -37,6 +41,16 @@ def show_labs(request, course_id):
     )
 
     labs_id = [learn_record.lab.id for learn_record in learn_records]
+    user_finished_labs = current_user.learnrecord_set.values_list(
+        "lab", flat=True
+    )
+
+    # Get persent that user finished labs.
+    user_finished_labs_per = 0
+    if learn_records.count():
+        user_finished_labs = len({}.fromkeys(user_finished_labs).keys())
+        user_finished_labs_per = user_finished_labs / float(learn_records.count())
+        user_finished_labs_per = int(user_finished_labs_per * 100)
 
     return render(request,
         "labs/show_labs.html",
@@ -44,6 +58,7 @@ def show_labs(request, course_id):
             "course": course,
             "user_record_latest": learn_records.first(),
             "labs_id": labs_id,
+            "user_finished_labs_per": user_finished_labs_per,
         }
     )
 
@@ -78,7 +93,7 @@ def edit_code(request, course_id, lab_weight):
 
     user_code = current_user.usercode_set.filter(
         lab=lab
-        ).first()
+    ).first()
 
     # Get docker container for current user.
     user_docker = current_user.userdockers_set.first()
@@ -136,6 +151,7 @@ def edit_code(request, course_id, lab_weight):
     )
 
 
+@require_http_methods(["POST"])
 @login_required
 def save_user_code(request):
     if request.method == "POST":
@@ -175,11 +191,9 @@ def save_user_code(request):
             )
         except Exception, ex:
             error = ex
+            logger.error(ex)
             return HttpResponse(error)
         else:
-            # return redirect(
-                # reverse('labs.views.lab_index', args=[int(course.id), lab_id])
-            # )
             return HttpResponse(
                 reverse(
                     'labs:edit_code',
@@ -187,4 +201,4 @@ def save_user_code(request):
                 )
             )
     else:
-        return HttpResponseNotFound('Wow , woW,<h1>404 NOT FOUND</h1>')
+        return Http404()
