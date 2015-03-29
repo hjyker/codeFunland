@@ -51,4 +51,4 @@ class Labs(models.Model):
         return self.name
 
     class Meta:
-        ordering = ["-created_time"]
+        ordering = ["weight"]

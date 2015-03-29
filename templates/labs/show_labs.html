@@ -113,5 +113,7 @@
         {% endfor %}
         </div>
     </div>
-
+{% if not course.labs_set.count %}
+    还没有添加实验
+{% endif %}
 {% endblock %}

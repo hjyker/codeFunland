@@ -30,13 +30,13 @@
 
                     <p>{{ lab.created_time | date:'Y-m-d' }}</p>
                     <p>{{ docker_info }}</p>
-                    
+
                     {% if user_docker %}
                         <p>{{ user_docker.docker_open_link }}</p>
                     {% else %}
                         <p>Null</p>
                     {% endif %}
-                    
+
                     {% if user_code %}
                         <p>code path: <br/> {{ user_code.code_path }}</p>
                         {% if user_code.code_content.0 == 'f' %}
@@ -65,11 +65,11 @@
                 </div>
             </div>
             <div class="editor-bottom-bar">
-                <div class="am-btn am-btn-primary am-radius btn-save">
-                    保存并提交代码
+                <div id="run_ocode" class="am-btn am-btn-primary am-radius btn-save">
+                    保存并运行代码
                 </div>
-                <div class="am-btn am-radius btn-resite">
-                    Next Lab
+                <div id="next_lab" class="am-btn am-radius btn-resite">
+                    下一课
                 </div>
             </div>
         </div>
@@ -161,7 +161,7 @@
         });
     });
 
-   $("#post_code").click(function () {
+   $("#next_lab").click(function () {
         var code_path = "/home/code/work/{{ lab.id }}"
         var code_content_latest = editor.getValue();
         console.log({{ lab.id }})
