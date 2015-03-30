@@ -41,15 +41,18 @@ def show_labs(request, course_id):
     )
 
     labs_id = [learn_record.lab.id for learn_record in learn_records]
-    user_finished_labs = current_user.learnrecord_set.values_list(
+    user_finished_labs = current_user.learnrecord_set.filter(
+        course=course
+    ).values_list(
         "lab", flat=True
     )
 
     # Get persent that user finished labs.
     user_finished_labs_per = 0
     if learn_records.count():
+        # delete repeating element
         user_finished_labs = len({}.fromkeys(user_finished_labs).keys())
-        user_finished_labs_per = user_finished_labs / float(learn_records.count())
+        user_finished_labs_per = user_finished_labs / float(course.labs_set.count())
         user_finished_labs_per = int(user_finished_labs_per * 100)
 
     return render(request,
