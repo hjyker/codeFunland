@@ -173,6 +173,7 @@ def update_avatar(request, user_id):
         if form.is_valid():
             try:
                 file = handle_upload_files(request.FILES.get('avatar_link', ""), request)
+                logger.error(file)
                 current_user.userprofile.avatar_link = 'avatar/' + file.name
                 current_user.userprofile.save()
             except IOError, ex:
@@ -188,6 +189,9 @@ def update_avatar(request, user_id):
                     messages.ERROR,
                     error_msg
                 )
+            except Exception, ex:
+                logger.error(ex)
+                messages.add_message(request, messages.ERROR, ex)
             finally:
                 return render(request,
                     'users/profile.html',
