@@ -16,7 +16,7 @@ from django.contrib import messages
 # from django.core.files import File
 
 from users.forms import (
-    UserLoginForm, UserRegisterForm, UserProfileForm
+    UserLoginForm, UserRegisterForm, UserProfileForm, ImageFileForm
 )
 from users.models import UserProfile
 from courses.models import LearnRecord
@@ -172,7 +172,7 @@ def update_avatar(request, user_id):
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             try:
-                file = handle_upload_files(request.FILES.get('avatar_link', ""))
+                file = handle_upload_files(request.FILES.get('avatar_link', ""), request)
                 current_user.userprofile.avatar_link = 'avatar/' + file.name
                 current_user.userprofile.save()
             except IOError, ex:
@@ -195,7 +195,11 @@ def update_avatar(request, user_id):
 
 
     form = UserProfileForm()
+    image_form = ImageFileForm()
     return render(request,
         'users/update_profile.html',
-        {'form': form}
+        {
+            'form': form,
+            'image_form': image_form,
+        }
     )

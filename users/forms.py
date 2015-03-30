@@ -65,5 +65,16 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['avatar_link']
 
+
 class UploadFileForm(forms.Form):
     avatar = forms.ImageField()
+
+
+class ImageFileForm(forms.Form):
+    x1 = forms.CharField(widget=forms.HiddenInput(), initial=92)
+    y1 = forms.CharField(widget=forms.HiddenInput(), initial=0)
+    x2 = forms.CharField(widget=forms.HiddenInput(), initial=302)
+    y2 = forms.CharField(widget=forms.HiddenInput(), initial=225)
+    width = forms.CharField(widget=forms.HiddenInput(), initial=400)
+    height = forms.CharField(widget=forms.HiddenInput(), initial=225)
+
