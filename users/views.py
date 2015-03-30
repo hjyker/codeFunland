@@ -66,7 +66,9 @@ def user_login(request):
                     )
                 else:
                     return redirect(
-                        reverse("labs:show_labs", args=[user_record.first().lab.id])
+                        reverse("labs:show_labs",
+                            args=[user_record.first().course.id]
+                        )
                     )
             else:
                 messages.add_message(
