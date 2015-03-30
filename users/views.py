@@ -58,9 +58,7 @@ def user_login(request):
                     'Sign in Successful!'
                 )
 
-                user_record = LearnRecord.objects.filter(
-                        user=user
-                ).order_by("-created_time")
+                user_record = LearnRecord.objects.filter(user=user)
 
                 if not user_record.exists():
                     return redirect(
@@ -68,7 +66,7 @@ def user_login(request):
                     )
                 else:
                     return redirect(
-                        reverse("labs:show_labs", args=[])
+                        reverse("labs:show_labs", args=[user_record.first().lab.id])
                     )
             else:
                 messages.add_message(
