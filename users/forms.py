@@ -71,10 +71,10 @@ class UploadFileForm(forms.Form):
 
 
 class ImageFileForm(forms.Form):
-    x1 = forms.CharField(widget=forms.HiddenInput(), initial=92)
+    x1 = forms.CharField(widget=forms.HiddenInput(), initial=0)
     y1 = forms.CharField(widget=forms.HiddenInput(), initial=0)
-    x2 = forms.CharField(widget=forms.HiddenInput(), initial=302)
-    y2 = forms.CharField(widget=forms.HiddenInput(), initial=225)
-    width = forms.CharField(widget=forms.HiddenInput(), initial=400)
-    height = forms.CharField(widget=forms.HiddenInput(), initial=225)
+    x2 = forms.CharField(widget=forms.HiddenInput(), initial=120)
+    y2 = forms.CharField(widget=forms.HiddenInput(), initial=120)
+    width = forms.CharField(widget=forms.HiddenInput(), initial=120)
+    height = forms.CharField(widget=forms.HiddenInput(), initial=120)
 
