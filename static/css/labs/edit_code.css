@@ -46,6 +46,7 @@
 	left: 0;
 }
 .console {
+    color: #fff;
     background-color: #272822;
 }
 .console-content {
