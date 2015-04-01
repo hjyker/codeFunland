@@ -86,6 +86,14 @@ def docker_port(container_id):
     return "%s:%s" % (host_ip, host_port)
 
 
+def docker_rm_container(container_id):
+    status = CLI.remove_container(
+        container=container_id,
+        force=True
+    )
+    return status
+
+
 if __name__ == "__main__":
     # print docker_init_container()
     print docker_ps()

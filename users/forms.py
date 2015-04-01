@@ -24,12 +24,10 @@ class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(),
         required=True,
-        label=u"密码"
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(),
         required=True,
-        label=u"再次输入密码"
     )
 
     class Meta:
@@ -73,8 +71,7 @@ class UploadFileForm(forms.Form):
 class ImageFileForm(forms.Form):
     x1 = forms.CharField(widget=forms.HiddenInput(), initial=0)
     y1 = forms.CharField(widget=forms.HiddenInput(), initial=0)
-    x2 = forms.CharField(widget=forms.HiddenInput(), initial=120)
-    y2 = forms.CharField(widget=forms.HiddenInput(), initial=120)
-    width = forms.CharField(widget=forms.HiddenInput(), initial=120)
-    height = forms.CharField(widget=forms.HiddenInput(), initial=120)
-
+    x2 = forms.CharField(widget=forms.HiddenInput(), initial=180)
+    y2 = forms.CharField(widget=forms.HiddenInput(), initial=180)
+    width = forms.CharField(widget=forms.HiddenInput(), initial=180)
+    height = forms.CharField(widget=forms.HiddenInput(), initial=180)

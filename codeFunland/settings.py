@@ -9,6 +9,10 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 from django.core.urlresolvers import reverse_lazy
+import datetime
+
+import djcelery
+djcelery.setup_loader()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -44,6 +48,7 @@ INSTALLED_APPS = (
     'users',
     'courses',
     'labs',
+    'djcelery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -122,7 +127,7 @@ LOGGING = {
             "datefmt": "%d-%b-%Y %H:%M:%S"
         },
         "simple": {
-            "format": "---%(levelname)s %(message)s\n"
+            "format": "%(levelname)s %(message)s\n"
         },
     },
     "handlers": {
@@ -164,3 +169,10 @@ BROKER_URL = r'redis://localhost:6379/0'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+CELERYBEAT_SCHEDULE = {
+    "run-test-2hours": {
+        "task": "labs.tasks.rm_periodic_docker",
+        "schedule": datetime.timedelta(hours=2),
+        # "args": (),
+    },
+}

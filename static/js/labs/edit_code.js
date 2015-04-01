@@ -24,20 +24,20 @@ function onFun(){
 	})
 }
 
-$(".btn-save").click(function(){
-    var val = editor.getValue();
-    var result = null;
-    
-    var Arr = val.split(/\n/g);
-    var html = "";
-    for(var i = 0; Arr[i]; i++){
-        try {
-            result = eval(Arr[i]);
-        } catch(exception) {
-           result = exception;
-        }
-        html += "<div>JavaScripy>&nbsp;"+ Arr[i] +"</div>"+
-                "<div>>&nbsp;"+ result +"</div>";
-    }
-    $('.console-content').html("").append(html);
-})
+// $(".btn-save").click(function(){
+//     var val = editor.getValue();
+//     var result = null;
+//
+//     var Arr = val.split(/\n/g);
+//     var html = "";
+//     for(var i = 0; Arr[i]; i++){
+//         try {
+//             result = eval(Arr[i]);
+//         } catch(exception) {
+//            result = exception;
+//         }
+//         html += "<div>JavaScripy>&nbsp;"+ Arr[i] +"</div>"+
+//                 "<div>>&nbsp;"+ result +"</div>";
+//     }
+//     $('.console-content').html("").append(html);
+// })

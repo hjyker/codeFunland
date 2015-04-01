@@ -75,7 +75,9 @@ def edit_code(request, course_id, lab_weight):
     code_form = UserCodeForm()
     course = Courses.objects.get(id=course_id)
     labs = course.labs_set
-    # test.delay("edit_code, yoyoyoyoyoyo")
+
+    test.delay("edit_code, yoyoyoyoyoyo")
+
     # Reback courses.index without labs for this course
     if not labs.exists():
         messages.add_message(request,
@@ -101,44 +103,9 @@ def edit_code(request, course_id, lab_weight):
 
     # Get docker container for current user.
     user_docker = current_user.userdockers_set.first()
-    user_docker = init_docker(request, user_docker, course)
-
-    # # Get docker container's record that currnet user used.
-    # create_container = False
-    # if not user_docker:
-        # create_container = True
-    # elif timezone.now() - user_docker.created_time >= EXPIRES:
-        # create_container = True
-    # else:
-        # try:
-            # docker_port(user_docker.docker_id)
-        # except Exception, ex:
-# # Test ################################################################
-            # # messages.add_message(request, messages.ERROR, ex)
-# # end #################################################################
-            # logger.warning(ex)
-            # messages.add_message(request,
-                # messages.WARNING,
-                # 'Your docker container has been not exist, We will Create a New...'
-            # )
-            # create_container = True
-
-    # # create_container = False
-    # if create_container:
-        # try:
-            # new_docker_container = docker_init_container_ports(int(course.id))
-            # docker_id = new_docker_container.get('Id', None)
-            # open_link = docker_port(docker_id)
-
-            # user_docker = UserDockers.objects.create(
-                # docker_id=docker_id,
-                # docker_open_link=open_link,
-                # user=current_user
-            # )
-        # except Exception, ex:
-            # logger.error(ex)
-            # messages.add_message(request, messages.ERROR, ex)
-            # user_docker = ex
+    # Get docker container's record that currnet user used.
+    init_docker.delay(current_user.id, course_id)
+    user_dockers = current_user.userdockers_set.first()
 
     docker_info = docker_ps()
     # docker_info = False
@@ -153,7 +120,8 @@ def edit_code(request, course_id, lab_weight):
             "docker_info": docker_info,
             "user_docker": user_docker,
             "user_code": user_code,
-            "code_form": code_form
+            "code_form": code_form,
+            "user_dockers": user_dockers,
         }
     )
 

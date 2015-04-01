@@ -14,6 +14,7 @@
         <div class="am-u-md-3">
             <div class="doc-content">
                 <div class="doc-title">
+
                     文档标题
                 </div>
                 <div class="doc-text">
@@ -22,6 +23,7 @@
                     <p>labDescription:{{ lab.description }}</p>
                     <p>labViews:{{ lab.views }}</p>
 
+                    #####{{ user_dockers.docker_open_link }}
                     {% if lab.document_link %}
                         <p>{{ lab.document_link }}</p>
                     {% else %}
