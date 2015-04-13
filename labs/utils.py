@@ -35,6 +35,9 @@ def docker_ps():
 
 
 def docker_init_container(image):
+    """
+    Just only test docker server.
+    """
     c = CLI.create_container(
         image=IMAGE[image],
         command="/bin/bash",
@@ -48,6 +51,9 @@ def docker_init_container(image):
 
 
 def docker_init_container_ports(image, host_addr=HOST_ADDR):
+    """
+    Init a docker container and allots a port to it.
+    """
     c = CLI.create_container(
         image=IMAGE[image],
         command=INIT_COMMAND,

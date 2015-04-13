@@ -76,7 +76,7 @@ def edit_code(request, course_id, lab_weight):
     course = Courses.objects.get(id=course_id)
     labs = course.labs_set
 
-    test.delay("edit_code, yoyoyoyoyoyo")
+    # test.delay("edit_code, yoyoyoyoyoyo")
 
     # Reback courses.index without labs for this course
     if not labs.exists():
