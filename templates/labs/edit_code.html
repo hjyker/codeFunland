@@ -14,36 +14,11 @@
         <div class="am-u-md-3">
             <div class="doc-content">
                 <div class="doc-title">
-                    文档标题
+                    <span class="lab-name">{{ lab.name }}</span>
+                    <span class="lab-date">&nbsp;---&nbsp;{{ lab.created_time | date:'Y-m-d' }}</span>
                 </div>
                 <div class="doc-text">
-                    文档部分
-                    <p>labName:{{ lab.name }}</p>
-                    <p>labDescription:{{ lab.description }}</p>
-                    <p>labViews:{{ lab.views }}</p>
-
-                    {% if lab.document_link %}
-                        <p>{{ lab.document_link }}</p>
-                    {% else %}
-                        <p>documents of lab is not exist!</p>
-                    {% endif %}
-
-                    <p>{{ lab.created_time | date:'Y-m-d' }}</p>
-                    <p>{{ docker_info }}</p>
-
-                    {% if user_docker %}
-                        <p>{{ user_docker.docker_open_link }}</p>
-                    {% else %}
-                        <p>Null</p>
-                    {% endif %}
-
-                    {% if user_code %}
-                        <p>code path: <br/> {{ user_code.code_path }}</p>
-                        {% if user_code.code_content.0 == 'f' %}
-                            <p>code: <br/> {{ user_code.code_content | slice:"1:" }}</p>
-                        {% endif %}
-                        <p>version: <br/> {{ user_code.version }}</p>
-                    {% endif %}
+                    lab.document|markdown
                 </div>
                 <div class="doc-bottom-bar">
                     <div class="am-u-sm-6 am-text-center doc-btn">Q&A Forum</div>
@@ -66,7 +41,7 @@
             </div>
             <div class="editor-bottom-bar">
                 <div id="run_code" class="am-btn am-btn-primary am-radius btn-save">
-                    保存并运行代码
+                    运行代码
                 </div>
                 <div id="next_lab" class="am-btn am-radius btn-resite">
                     下一课
@@ -138,7 +113,8 @@
         }
     });
     // end
-
+    
+    
     $("#run_code").click(function () {
         var code_path = "/home/code/work/{{ lab.id }}"
         var code_content_latest = editor.getValue();
