@@ -24,7 +24,7 @@ function onFun(){
 	})
 }
 
-$(".btn-save").click(function(){
+/* $(".btn-save").click(function(){
     var val = editor.getValue();
     var result = null;
     
@@ -40,4 +40,4 @@ $(".btn-save").click(function(){
                 "<div>>&nbsp;"+ result +"</div>";
     }
     $('.console-content').html("").append(html);
-})
+}) */
