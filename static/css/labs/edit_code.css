@@ -1,6 +1,9 @@
 .doc-content {
 	margin: 0;
 }
+.lab-name {
+    font-weight: bold;
+}
 .doc-title {
 	height: 30px;
 	line-height: 30px;
