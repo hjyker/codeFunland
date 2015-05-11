@@ -15,12 +15,12 @@
                             {% for field in login_form %}
                                 {% if field|fieldtype == "TextInput" %}
                                     <div class="am-input-group">
-                                        {{ login_form.username|addattrs:"placeholder=用户名" }}
+                                        {{ field|addattrs:"placeholder=用户名" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "PasswordInput" %}
                                     <div class="am-input-group">
-                                        {{ login_form.password|addattrs:"placeholder=6~12位密码" }}
+                                        {{ field|addattrs:"placeholder=6~12位密码" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "CheckboxInput" %}
@@ -49,17 +49,17 @@
                             {% for field in register_form %}
                                 {% if field|fieldtype == "TextInput" %}
                                     <div class="am-input-group">
-                                        {{ register_form.username|addattrs:"placeholder=用户名" }}
+                                        {{ field|addattrs:"placeholder=用户名" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "EmailInput" %}
                                     <div class="am-input-group">
-                                        {{ register_form.email|addattrs:"placeholder=邮箱" }}
+                                        {{ field|addattrs:"placeholder=邮箱" }}
                                         {{ field.errors }}
                                     </div>
                                 {% elif field|fieldtype == "PasswordInput" %}
                                     <div class="am-input-group">
-                                        {{ register_form.password|addattrs:"placeholder=6~12位密码" }}
+                                        {{ field|addattrs:"placeholder=6~12位密码" }}
                                         {{ field.errors }}
                                     </div>
                                 {% endif %}

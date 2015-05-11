@@ -7,7 +7,7 @@ import uuid
 from PIL import Image
 
 
-AVATAR_PATH = r"/home/tt/codeFunland/media/avatar/"
+AVATAR_PATH = r"/home/hjyker/codeUtopia/media/avatar/"
 REGION = (100,22,281,203)
 
 

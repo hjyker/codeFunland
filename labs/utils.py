@@ -12,10 +12,10 @@ BASE_URL_TCP = "tcp://127.0.0.1:2375"
 INIT_COMMAND = "node /usr/bin/server.js"
 
 IMAGE = {
-    PYTHON: "codefunland/python",
-    RUBY:   "codefunland/ruby",
-    PHP:    "codefunland/php",
-    NODEJS: "codefunland/nodejs"
+    PYTHON: "codeutopia/python",
+    RUBY:   "codeutopia/ruby",
+    PHP:    "codeutopia/php",
+    NODEJS: "codeutopia/nodejs"
 }
 
 CLI = docker.Client(base_url=BASE_URL_TCP)
@@ -23,7 +23,7 @@ CLI = docker.Client(base_url=BASE_URL_TCP)
 MOUNTPOINT = r"/mysite"
 HOST_DIR = ''
 
-HOST_ADDR = "127.0.0.1"
+HOST_ADDR = "0.0.0.0"
 CONTAINER_PORTS = 9999
 
 LOGIN_USER = "code"
@@ -35,6 +35,9 @@ def docker_ps():
 
 
 def docker_init_container(image):
+    """
+    Just only test docker server.
+    """
     c = CLI.create_container(
         image=IMAGE[image],
         command="/bin/bash",
@@ -47,7 +50,10 @@ def docker_init_container(image):
     return c
 
 
-def docker_init_container_ports(image, host_addr=HOST_ADDR):
+def docker_init_container_ports(image):
+    """
+    Init a docker container and allots a port to it.
+    """
     c = CLI.create_container(
         image=IMAGE[image],
         command=INIT_COMMAND,
@@ -61,7 +67,7 @@ def docker_init_container_ports(image, host_addr=HOST_ADDR):
     CLI.start(
         container=c.get("Id"),
         port_bindings={
-            CONTAINER_PORTS: (HOST_ADDR, )
+            CONTAINER_PORTS: None,
         },
         restart_policy={
             "MaximumRetryCount": 0,
@@ -81,11 +87,20 @@ def docker_container_inspect(container_id):
 
 def docker_port(container_id):
     container_port_mapper = CLI.port(container_id, CONTAINER_PORTS)[0]
-    host_ip = container_port_mapper.get("HostIp")
+    # host_ip = container_port_mapper.get("HostIp")
+    host_ip = "104.131.151.161"
     host_port = container_port_mapper.get("HostPort")
     return "%s:%s" % (host_ip, host_port)
 
 
+def docker_rm_container(container_id):
+    status = CLI.remove_container(
+        container=container_id,
+        force=True
+    )
+    return status
+
+
 if __name__ == "__main__":
-    # print docker_init_container()
+    print docker_init_container(1)
     print docker_ps()

@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'codeFunland.views.home', name='home'),
+    # url(r'^$', 'codeUtopia.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^yoyo/', include(admin.site.urls)),

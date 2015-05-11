@@ -24,12 +24,10 @@ class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(),
         required=True,
-        label=u"密码"
     )
     password2 = forms.CharField(
         widget=forms.PasswordInput(),
         required=True,
-        label=u"再次输入密码"
     )
 
     class Meta:

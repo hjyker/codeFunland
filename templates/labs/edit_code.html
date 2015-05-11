@@ -1,6 +1,7 @@
 {% extends "base/normal_base.html" %}
 
 {% load static %}
+{% load filters %}
 
 {% block title %}edit{% endblock %}
 
@@ -18,7 +19,9 @@
                     <span class="lab-date">&nbsp;---&nbsp;{{ lab.created_time | date:'Y-m-d' }}</span>
                 </div>
                 <div class="doc-text">
-                    lab.document|markdown
+
+                    {{ lab.document|markdown }}
+
                 </div>
                 <div class="doc-bottom-bar">
                     <div class="am-u-sm-6 am-text-center doc-btn">Q&A Forum</div>
@@ -58,11 +61,9 @@
 <script type="text/javascript" src="{% static 'js/labs/edit_code.js' %}"></script>
 <script>
     var editor = ace.edit("editor");
-    //editor.resize()
     editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
-    editor.getSession().setTabSize(4);
-    document.getElementById('editor').style.fontSize='15px';
+    editor.getSession().setMode("ace/mode/{{ course_label }}");
+    document.getElementById('editor').style.fontSize='14px';
 </script>
 <script>
 // set csrf_token for django
@@ -118,6 +119,7 @@
     $("#run_code").click(function () {
         var code_path = "/home/code/work/{{ lab.id }}"
         var code_content_latest = editor.getValue();
+        console.log(code_content_latest);
         $.post("http://{{ user_docker.docker_open_link }}",
             {
                 lab_id: {{ lab.id }},
