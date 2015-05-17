@@ -9,9 +9,9 @@ from celery import Celery
 from django.conf import settings
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'codeFunland.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'codeUtopia.settings')
 
-app = Celery('codeFunland')
+app = Celery('codeUtopia')
 
 
 app.config_from_object('django.conf:settings')
