@@ -12,10 +12,10 @@ BASE_URL_TCP = "tcp://127.0.0.1:2375"
 INIT_COMMAND = "node /usr/bin/server.js"
 
 IMAGE = {
-    PYTHON: "codefunland/python",
-    RUBY:   "codefunland/ruby",
-    PHP:    "codefunland/php",
-    NODEJS: "codefunland/nodejs"
+    PYTHON: "codeutopia/python",
+    RUBY:   "codeutopia/ruby",
+    PHP:    "codeutopia/php",
+    NODEJS: "codeutopia/nodejs"
 }
 
 CLI = docker.Client(base_url=BASE_URL_TCP)

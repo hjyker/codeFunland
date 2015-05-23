@@ -1,0 +1,12 @@
+*.pyc
+celerybeat-schedule
+
+coudeUtopia/migrations/
+courses/migrations/
+labs/migrations/
+start/migrations/
+users/migrations/
+
+docker/
+media/
+static/
