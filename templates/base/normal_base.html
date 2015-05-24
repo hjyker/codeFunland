@@ -29,7 +29,7 @@
     {% if user.is_authenticated %}
         <div class="am-topbar-right">
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle my-dropdown" data-am-dropdown-toggle>
+                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle my-dropdown my-btn" data-am-dropdown-toggle>
                     <div class="haeder-user-name">
                         <img class="header-img" src="{% get_media_prefix %}{{ user.userprofile.avatar_link }}" alt="{{ user.username }}"/>
                         &nbsp;
@@ -46,7 +46,7 @@
     {% else %}
         <div class="am-topbar-right">
             <div class="am-dropdown" data-am-dropdown="{boundary: '.am-topbar'}">
-                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle>
+                <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle my-btn" data-am-dropdown-toggle>
                     其他 <span class="am-icon-caret-down"></span>
                 </button>
                 <ul class="am-dropdown-content">

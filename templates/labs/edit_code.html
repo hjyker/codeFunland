@@ -19,9 +19,9 @@
                     <span class="lab-date">&nbsp;---&nbsp;{{ lab.created_time | date:'Y-m-d' }}</span>
                 </div>
                 <div class="doc-text">
+
                     {{ lab.document|markdown }}
 
-                   
                 </div>
                 <div class="doc-bottom-bar">
                     <div class="am-u-sm-6 am-text-center doc-btn">Q&A Forum</div>
@@ -114,7 +114,8 @@
         }
     });
     // end
-
+    
+    
     $("#run_code").click(function () {
         var code_path = "/home/code/work/{{ lab.id }}"
         var code_content_latest = editor.getValue();

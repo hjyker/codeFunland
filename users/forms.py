@@ -75,3 +75,4 @@ class ImageFileForm(forms.Form):
     y2 = forms.CharField(widget=forms.HiddenInput(), initial=180)
     width = forms.CharField(widget=forms.HiddenInput(), initial=180)
     height = forms.CharField(widget=forms.HiddenInput(), initial=180)
+
