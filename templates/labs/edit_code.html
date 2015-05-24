@@ -1,6 +1,7 @@
 {% extends "base/normal_base.html" %}
 
 {% load static %}
+{% load filters %}
 
 {% block title %}edit{% endblock %}
 
@@ -14,23 +15,13 @@
         <div class="am-u-md-3">
             <div class="doc-content">
                 <div class="doc-title">
-
-                    文档标题
+                    <b>labName:{{ lab.name }}</b>
+                    <b>labViews:{{ lab.views }}</b>
+                    <b>{{ lab.created_time | date:'Y-m-d' }}</b>
                 </div>
                 <div class="doc-text">
-                    文档部分
-                    <p>labName:{{ lab.name }}</p>
-                    <p>labDescription:{{ lab.description }}</p>
-                    <p>labViews:{{ lab.views }}</p>
+                    {{ lab.document|markdown }}
 
-                    #####{{ user_dockers.docker_open_link }}
-                    {% if lab.document_link %}
-                        <p>{{ lab.document_link }}</p>
-                    {% else %}
-                        <p>documents of lab is not exist!</p>
-                    {% endif %}
-
-                    <p>{{ lab.created_time | date:'Y-m-d' }}</p>
                     <p>{{ docker_info }}</p>
 
                     {% if user_docker %}
