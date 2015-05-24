@@ -8,9 +8,9 @@ RUBY = 2
 PHP = 3
 NODEJS = 4
 
-COMMAND_PRE = {
+COURSE_LABEL = {
     PYTHON: "python",
     RUBY: "ruby",
     PHP: "php",
-    NODEJS: "node"
+    NODEJS: "nodejs"
 }

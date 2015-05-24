@@ -19,7 +19,7 @@ from .utils import (
     docker_ps, docker_init_container_ports, docker_port
 )
 from labs.forms import UserCodeForm
-from courses.constants import COMMAND_PRE
+from courses.constants import COURSE_LABEL
 from labs.tasks import test, init_docker
 
 # docker containers expires time
@@ -115,8 +115,9 @@ def edit_code(request, course_id, lab_weight):
         "labs/edit_code.html",
         {
             "course": course,
+            "course_label": COURSE_LABEL.get(course.label),
             "lab": lab,
-            "command_pre": COMMAND_PRE.get(course.label),
+            "command_pre": COURSE_LABEL.get(course.label),
             "docker_info": docker_info,
             "user_docker": user_docker,
             "user_code": user_code,
