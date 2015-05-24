@@ -55,7 +55,7 @@ def init_docker(user_id, course_id):
     # create_container = False
     if create_container:
         try:
-            new_docker_container = docker_init_container_ports(int(course.id))
+            new_docker_container = docker_init_container_ports(int(course.label))
             docker_id = new_docker_container.get('Id', None)
             open_link = docker_port(docker_id)
 

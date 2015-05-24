@@ -67,7 +67,7 @@ def docker_init_container_ports(image, host_addr=HOST_ADDR):
     CLI.start(
         container=c.get("Id"),
         port_bindings={
-            CONTAINER_PORTS: (HOST_ADDR, )
+            CONTAINER_PORTS: (host_addr, )
         },
         restart_policy={
             "MaximumRetryCount": 0,
@@ -87,7 +87,8 @@ def docker_container_inspect(container_id):
 
 def docker_port(container_id):
     container_port_mapper = CLI.port(container_id, CONTAINER_PORTS)[0]
-    host_ip = container_port_mapper.get("HostIp")
+    # host_ip = container_port_mapper.get("HostIp")
+    host_ip = "104.131.151.161"
     host_port = container_port_mapper.get("HostPort")
     return "%s:%s" % (host_ip, host_port)
 
