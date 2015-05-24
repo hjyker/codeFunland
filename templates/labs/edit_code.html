@@ -15,28 +15,13 @@
         <div class="am-u-md-3">
             <div class="doc-content">
                 <div class="doc-title">
-                    <b>labName:{{ lab.name }}</b>
-                    <b>labViews:{{ lab.views }}</b>
-                    <b>{{ lab.created_time | date:'Y-m-d' }}</b>
+                    <span class="lab-name">{{ lab.name }}</span>
+                    <span class="lab-date">&nbsp;---&nbsp;{{ lab.created_time | date:'Y-m-d' }}</span>
                 </div>
                 <div class="doc-text">
                     {{ lab.document|markdown }}
 
-                    <p>{{ docker_info }}</p>
-
-                    {% if user_docker %}
-                        <p>{{ user_docker.docker_open_link }}</p>
-                    {% else %}
-                        <p>Null</p>
-                    {% endif %}
-
-                    {% if user_code %}
-                        <p>code path: <br/> {{ user_code.code_path }}</p>
-                        {% if user_code.code_content.0 == 'f' %}
-                            <p>code: <br/> {{ user_code.code_content | slice:"1:" }}</p>
-                        {% endif %}
-                        <p>version: <br/> {{ user_code.version }}</p>
-                    {% endif %}
+                   
                 </div>
                 <div class="doc-bottom-bar">
                     <div class="am-u-sm-6 am-text-center doc-btn">Q&A Forum</div>
@@ -76,11 +61,9 @@
 <script type="text/javascript" src="{% static 'js/labs/edit_code.js' %}"></script>
 <script>
     var editor = ace.edit("editor");
-    //editor.resize()
     editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
-    editor.getSession().setTabSize(4);
-    document.getElementById('editor').style.fontSize='15px';
+    editor.getSession().setMode("ace/mode/{{ course_label }}");
+    document.getElementById('editor').style.fontSize='14px';
 </script>
 <script>
 // set csrf_token for django

@@ -23,7 +23,7 @@ CLI = docker.Client(base_url=BASE_URL_TCP)
 MOUNTPOINT = r"/mysite"
 HOST_DIR = ''
 
-HOST_ADDR = "127.0.0.1"
+HOST_ADDR = "0.0.0.0"
 CONTAINER_PORTS = 9999
 
 LOGIN_USER = "code"
@@ -50,7 +50,7 @@ def docker_init_container(image):
     return c
 
 
-def docker_init_container_ports(image, host_addr=HOST_ADDR):
+def docker_init_container_ports(image):
     """
     Init a docker container and allots a port to it.
     """
@@ -67,7 +67,7 @@ def docker_init_container_ports(image, host_addr=HOST_ADDR):
     CLI.start(
         container=c.get("Id"),
         port_bindings={
-            CONTAINER_PORTS: (host_addr, )
+            CONTAINER_PORTS: None,
         },
         restart_policy={
             "MaximumRetryCount": 0,
@@ -102,5 +102,5 @@ def docker_rm_container(container_id):
 
 
 if __name__ == "__main__":
-    # print docker_init_container()
+    print docker_init_container(1)
     print docker_ps()
