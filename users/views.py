@@ -3,9 +3,9 @@
 
 import logging
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import (
     authenticate, login, logout
 )
@@ -16,7 +16,8 @@ from django.contrib import messages
 # from django.core.files import File
 
 from users.forms import (
-    UserLoginForm, UserRegisterForm, UserProfileForm, ImageFileForm
+    UserLoginForm, UserRegisterForm, UserProfileForm,
+    ImageFileForm, changepasswordForm
 )
 from users.models import UserProfile
 from courses.models import LearnRecord
@@ -206,4 +207,62 @@ def update_avatar(request, user_id):
             'form': form,
             'image_form': image_form,
         }
+    )
+
+
+def change_pwd(request):
+    if not request.user.is_authenticated():
+        return redirect(reverse("users:user_login", args=[]))
+    form = changepasswordForm()
+    if request.method=="POST":
+        form = changepasswordForm(request.POST.copy())
+        if form.is_valid():
+            username = request.user.username
+            oldpassword = form.cleaned_data["oldpassword"]
+            newpassword = form.cleaned_data["newpassword"]
+            newpassword1 = form.cleaned_data["newpassword1"]
+            user = authenticate(username=username,password=oldpassword)
+            if user: #原口令正确
+                if newpassword == newpassword1:#两次新口令一致
+                    user.set_password(newpassword)
+                    user.save()
+                    return redirect(reverse("users:user_profile", args=[request.user.id]))
+                else:#两次新口令不一致
+                    messages.add_message(
+                        request,
+                        messages.ERROR,
+                        '两次密码不一致'
+                    )
+                    return render(
+                        request,
+                        "users/changepassword.html",
+                        {'form': form}
+                    )
+            else:  #原口令不正确
+                if newpassword == newpassword1:#两次新口令一致
+                    messages.add_message(
+                        request,
+                        messages.ERROR,
+                        '旧密码错误'
+                    )
+                    return render(
+                        request,
+                        "users/changepassword.html",
+                        {'form': form}
+                    )
+                else:#两次新口令不一致
+                    messages.add_message(
+                        request,
+                        messages.ERROR,
+                        '两次新密码不一致'
+                    )
+                    return render(
+                        request,
+                        "users/changepassword.html",
+                        {'form': form}
+                    )
+    return render(
+        request,
+        "users/changepassword.html",
+        {'form': form}
     )

@@ -76,3 +76,17 @@ class ImageFileForm(forms.Form):
     width = forms.CharField(widget=forms.HiddenInput(), initial=180)
     height = forms.CharField(widget=forms.HiddenInput(), initial=180)
 
+
+class changepasswordForm(forms.Form):
+    oldpassword = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput()
+    )
+    newpassword = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput()
+    )
+    newpassword1 = forms.CharField(
+        required=True,
+        widget=forms.PasswordInput()
+    )

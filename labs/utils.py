@@ -13,9 +13,9 @@ INIT_COMMAND = "node /usr/bin/server.js"
 
 IMAGE = {
     PYTHON: "codeutopia/python",
-    RUBY:   "codeutopia/ruby",
-    PHP:    "codeutopia/php",
-    NODEJS: "codeutopia/nodejs"
+    RUBY:   "codeutopia/python",
+    PHP:    "codeutopia/python",
+    NODEJS: "codeutopia/python",
 }
 
 CLI = docker.Client(base_url=BASE_URL_TCP)

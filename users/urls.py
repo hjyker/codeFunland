@@ -12,4 +12,5 @@ urlpatterns = patterns('',
     url(r'^register/$', views.user_register, name='user_register'),
     url(r'^profile/(?P<user_id>\d+)/$', views.user_profile, name='user_profile'),
     url(r'^profile/(?P<user_id>\d+)/update/$', views.update_avatar, name='update_avatar'),
+    url(r'^change_pwd/$', views.change_pwd, name='change_pwd'),
 )

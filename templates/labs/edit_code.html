@@ -58,13 +58,18 @@
 
 {% block js %}
 <script type="text/javascript" src="{% static 'ace-builds/ace.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/labs/edit_code.js' %}"></script>
 <script>
+    if('{{ course_label }}' == 'nodejs'){
+        var mode = "ace/mode/javascript";
+    }else{
+        var mode = "ace/mode/{{ course_label }}";
+    }
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/{{ course_label }}");
+    editor.getSession().setMode(mode);
     document.getElementById('editor').style.fontSize='14px';
 </script>
+<script type="text/javascript" src="{% static 'js/labs/edit_code.js' %}"></script>
 <script>
 // set csrf_token for django
     function getCookie(name) {
